@@ -233,9 +233,29 @@ Crear un segmento nuevo debe tomar minutos.
   original; y usa Helvetica con títulos de sección chicos y espaciados,
   mientras el sitio usa Source Sans 3 con títulos grandes (tomados del
   CV A4). La paleta sí es idéntica en los tres.
-- **Fase 2a — pendiente.** Falta la tarjeta-gancho.
-  Nota: el JPG `Fernando Quevedo - Tarjeta.jpg` existe en el proyecto
-  de Claude Design y probablemente sea la tarjeta-gancho.
+- **Fase 2a — LISTA.** La tarjeta-gancho es `Tarjeta gancho.dc.html`
+  del proyecto de Claude Design. También es estática (su bloque
+  `data-dc-script` viene vacío), así que se reprodujo en
+  `_fuente-img/tarjeta-gancho.html` y se renderizó con Chrome headless.
+  Productos, ambos JPEG calidad 90:
+    - `assets/img/tarjeta-mariapinto-1080x1350.jpg` (168,4 KB) — la
+      imagen que Fernando comparte por WhatsApp/redes.
+    - `assets/img/og-mariapinto.jpg` (95,9 KB, límite 300 KB) — vista
+      previa del link, conectada al `og:image` de `/mariapinto/` junto
+      con `og:image:width/height/alt`.
+  El og:image NO es un recorte literal de la tarjeta: la tarjeta es
+  vertical (1080×1350) y el og:image es horizontal (1200×630), así que
+  una franja del centro habría dejado fuera el nombre o el número.
+  Son los mismos textos reordenados, en
+  `_fuente-img/og-mariapinto.html`. Ambos comandos de regeneración
+  están comentados dentro de cada archivo fuente.
+  Color nuevo que aporta la tarjeta y que solo se usa sobre fondo
+  oscuro: `#9AA6B2` (gris azulado, 7,0:1 sobre `#051C2C`).
+  Se quitó el placeholder de imagen del cuerpo de `/mariapinto/`: el
+  visitante acaba de ver y tocar la tarjeta en WhatsApp, repetirla
+  gastaría la primera pantalla del celular. Si se quiere de vuelta, es
+  un `<img>` y ya existe el JPG.
+- **YA NO QUEDAN [PENDIENTE] en el sitio.** Fase 2 completa.
 - **DECISIÓN PENDIENTE — contenido extra del CV A4.** El CV trae
   material que la copy definitiva de `/mariapinto/` no tiene. NO se
   agregó a la landing sin autorización. Es: sección FORMACIÓN aparte;

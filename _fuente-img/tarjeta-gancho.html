@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tarjeta gancho 1080×1350</title>
+<!--
+  FUENTE DE IMAGEN de la tarjeta-gancho que se comparte por WhatsApp.
+
+  Reproduce "Tarjeta gancho.dc.html" de Claude Design. Ese archivo es
+  estático (su bloque data-dc-script viene vacío: solo declara el
+  tamaño de vista previa), así que no necesita React para existir.
+  Única diferencia: la tipografía se carga desde /assets/fonts/ en vez
+  de Google Fonts, para que el render no dependa de internet.
+
+  Cómo se regenera la imagen:
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless --disable-gpu --hide-scrollbars \
+      --allow-file-access-from-files \
+      --force-device-scale-factor=1 --window-size=1080,1350 \
+      --screenshot=/tmp/tarjeta.png "_fuente-img/tarjeta-gancho.html"
+-->
+<style>
+  @font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 400 700;    /* fuente variable: un archivo, todos los pesos */
+    src: url("../assets/fonts/source-sans-3-latin.woff2") format("woff2");
+  }
+
+  html, body { margin: 0; padding: 0; background: #051C2C; }
+
+  .tarjeta {
+    width: 1080px;
+    height: 1350px;
+    box-sizing: border-box;
+    background: #051C2C;
+    font-family: "Source Sans 3", system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 100px;
+    gap: 64px;
+  }
+
+  .barra   { width: 120px; height: 14px; background: #2251FF; }
+
+  .nombre  { font-size: 122px; font-weight: 700; color: #FFFFFF; line-height: 1.04; }
+
+  .bloque  { display: flex; flex-direction: column; gap: 22px; align-items: center; }
+
+  .lema    { font-size: 76px; font-weight: 700; color: #FFFFFF; line-height: 1.1;  white-space: nowrap; }
+  .detalle { font-size: 54px; font-weight: 600; color: #FFFFFF; line-height: 1.25; }
+  .credenciales {
+    font-size: 42px; font-weight: 600; color: #9AA6B2;
+    line-height: 1.25; white-space: nowrap;
+  }
+
+  .cta {
+    background: #2251FF;
+    color: #FFFFFF;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 34px 44px;
+    white-space: nowrap;
+  }
+
+  .nowrap { white-space: nowrap; }
+</style>
+</head>
+
+<body>
+<div class="tarjeta">
+  <div class="barra"></div>
+  <div class="nombre">FERNANDO<br>QUEVEDO</div>
+  <div class="bloque">
+    <div class="lema">Finanzas, inversiones e IA</div>
+    <div class="detalle">
+      <span class="nowrap">Empresas y sector público</span> ·
+      <span class="nowrap">Foco en el agro</span>
+    </div>
+    <div class="detalle">María Pinto</div>
+    <div class="credenciales">Economista PUC · MBA Ejecutivo IAE BS</div>
+  </div>
+  <div class="cta">WhatsApp +56 9 6778 9324</div>
+</div>
+</body>
+</html>
