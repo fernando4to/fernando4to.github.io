@@ -101,8 +101,8 @@ configura WhatsApp Business; se administra a mano.
 ## copy definitivo, sin marcas pendientes)
 
   FERNANDO QUEVEDO
-  Finanzas, inversiones e IA para empresas, agro y sector público —
-  María Pinto y alrededores
+  Finanzas, inversiones e IA para empresas y sector público — con foco
+  en el agro de María Pinto
 
   QUÉ RESUELVO
   • ¿Conviene esta inversión? — Evaluación con números: riego,
@@ -273,12 +273,17 @@ Crear un segmento nuevo debe tomar minutos.
       Trayectoria, y suma el MBA y los posgrados en Tilburg y Viena.
   Como efecto de esto, la PLANTILLA DE SEGMENTO de más arriba ahora
   tiene 7 bloques, no 6: Formación entra entre Trayectoria y el CTA.
-- **DIVERGENCIA VIVA — el lema.** Los tres CV usan
-  "…para empresas y sector público — con foco en el agro de María
-  Pinto". El sitio usa el de este documento:
-  "…para empresas, agro y sector público — María Pinto y alrededores".
-  No se cambió porque este documento lo declara copy definitivo.
-  Decisión pendiente de Fernando.
+- **LEMA — RESUELTO.** Fernando decidió consistencia total con el de
+  los CV: "Finanzas, inversiones e IA para empresas y sector público —
+  con foco en el agro de María Pinto". El lema anterior
+  ("…para empresas, agro y sector público — María Pinto y alrededores")
+  queda descartado y ya no debe usarse en ninguna parte. Aplicado en
+  los 3 lugares de `/mariapinto/`: el `<p class="lema">`, la
+  `meta description` y el `og:description`. La copy definitiva de más
+  arriba en este documento ya está actualizada.
+  Única aparición sobreviviente de "María Pinto y alrededores": el pie
+  del PDF ("Disponible para asesorías en María Pinto y alrededores"),
+  que es otra frase y vive en el CV que Fernando decidió no modificar.
 - **DECISIÓN PENDIENTE — contenido extra del CV A4.** El CV trae
   material que la copy definitiva de `/mariapinto/` no tiene. NO se
   agregó a la landing sin autorización. Es: sección FORMACIÓN aparte;
