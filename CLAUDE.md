@@ -343,4 +343,31 @@ Crear un segmento nuevo debe tomar minutos.
   móvil sobre el sitio en vivo: **Performance 99, Accesibilidad 100**
   (la meta era ≥ 90 en ambos). Medido con la tipografía
   auto-hospedada de 28 KB y sin JavaScript.
+- **TARJETA GANCHO (vista previa de WhatsApp) — REDISEÑADA.** Prueba real:
+  la preview mide ~6 cm en el celular y de los 5 niveles de texto que
+  tenía la og-image solo sobrevivían 2. Se reasignó el trabajo por capa:
+  la IMAGEN grita nombre y lugar; el og:title y la og:description dicen
+  el resto en texto del sistema, que WhatsApp siempre dibuja nítido.
+    - `og-mariapinto.jpg` ahora tiene dos niveles: `FERNANDO / QUEVEDO`
+      (altura de mayúscula 124 px) y `María Pinto` (74 px). Fuera: la
+      línea de audiencia, la de credenciales y el botón pintado con el
+      número. 49,8 KB, JPEG calidad 85, baseline.
+    - Geometría medida, no estimada: Source Sans 3 tiene altura de
+      mayúscula = 0,652 × font-size, y con 10% de margen quedan
+      960×504 px útiles. De ahí salen dos hechos que mandan sobre el
+      diseño: "FERNANDO QUEVEDO" en UNA línea tope a 66 px (por eso va
+      partido en dos, donde llega a 124), y el lema completo
+      "Finanzas, inversiones e IA · María Pinto" tope a 37 px — la
+      mitad del piso de legibilidad. Por eso se cortó a "María Pinto".
+      Decisión de Fernando entre tres variantes medidas; las otras dos
+      eran "IA · María Pinto" (74 px) y "Finanzas · María Pinto" (69).
+    - La descripción (meta description y og:description, idénticas)
+      pasó a: "Antes de invertir —riego, maquinaria o IA— ponle números.
+      Primera conversación sin costo." (89 caracteres). Razón: WhatsApp
+      trunca cerca del carácter 100, y la versión anterior gastaba ese
+      espacio repitiendo la categoría en vez de poner la oferta.
+    - REGLA para futuras og-image: nunca menos de 60 px de altura de
+      mayúscula. Si el texto no cabe, se corta contenido; no se achica
+      la letra. Y el JPEG va baseline, nunca progresivo: WhatsApp no
+      dibuja los progresivos.
 - **Fases 4 y 5 — pendientes.**

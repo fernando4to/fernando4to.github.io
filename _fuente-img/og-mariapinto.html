@@ -7,19 +7,41 @@
   FUENTE DE IMAGEN de la vista previa que muestra WhatsApp al compartir
   el link de /mariapinto/.
 
-  ¿Por qué no es un recorte literal de la tarjeta 1080×1350?
-  Porque la tarjeta es vertical y el og:image es horizontal (1200×630,
-  el estándar que esperan WhatsApp, LinkedIn y Facebook). Recortar una
-  franja horizontal del centro dejaría fuera el nombre o el número de
-  WhatsApp. Así que son los MISMOS elementos y los mismos textos de la
-  tarjeta, reordenados para el formato horizontal.
+  POR QUÉ SOLO DOS NIVELES DE TEXTO
+  La versión anterior tenía cinco (nombre, lema, audiencia, credenciales
+  y un botón pintado con el número de WhatsApp). En pruebas reales la
+  preview de WhatsApp mide unos 6 cm de ancho en un celular: a ese
+  tamaño solo sobrevivían los dos primeros niveles. Los otros tres se
+  volvían manchas grises.
 
-  Cómo se regenera:
+  El trabajo que hacían esos tres niveles no se perdió: lo hacen ahora
+  el og:title y la og:description, que WhatsApp dibuja en texto del
+  sistema —siempre nítido, escalable y accesible— justo debajo de esta
+  imagen. La imagen se queda con lo que solo ella puede hacer: gritar
+  el nombre y el lugar.
+
+  GEOMETRÍA (medida, no estimada)
+  Lienzo 1200×630 con 10% de margen de seguridad = 960×504 px útiles.
+  Source Sans 3 tiene una altura de mayúscula de 0,652 × font-size.
+    - "FERNANDO QUEVEDO" en UNA línea solo llegaría a 66 px de altura
+      de mayúscula: por eso va partido en dos. A dos líneas alcanza
+      124 px.
+    - La línea 2 debe caber en 960 px de ancho a 70-80 px de altura de
+      mayúscula. El lema completo ("Finanzas, inversiones e IA · María
+      Pinto") solo llegaría a 37 px, así que no cabe: se cortó a
+      "María Pinto", que es el gancho del segmento y llega a 74 px.
+
+  Cómo se regenera (desde la raíz del repo):
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
       --headless --disable-gpu --hide-scrollbars \
-      --allow-file-access-from-files \
-      --force-device-scale-factor=1 --window-size=1200,630 \
+      --allow-file-access-from-files --force-device-scale-factor=1 \
+      --window-size=1200,630 --virtual-time-budget=8000 \
       --screenshot=/tmp/og.png "_fuente-img/og-mariapinto.html"
+  y luego a JPEG calidad 85 (baseline, nunca progresivo: WhatsApp no
+  dibuja los JPEG progresivos):
+    python3 -c "from PIL import Image; \
+      Image.open('/tmp/og.png').convert('RGB').save(\
+      'assets/img/og-mariapinto.jpg', 'JPEG', quality=85, optimize=True)"
 -->
 <style>
   @font-face {
@@ -35,52 +57,36 @@
     width: 1200px;
     height: 630px;
     box-sizing: border-box;
-    background: #051C2C;
+    background: #051C2C;             /* --c-deep */
     font-family: "Source Sans 3", system-ui, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 52px 72px;
-    gap: 30px;
+    padding: 63px 120px;             /* margen de seguridad: 10% */
   }
 
-  .barra { width: 100px; height: 12px; background: #2251FF; }
+  .barra { width: 100px; height: 12px; background: #2251FF; /* --c-accent */
+           margin-bottom: 30px; }
 
-  .nombre { font-size: 76px; font-weight: 700; color: #FFFFFF; line-height: 1.04; }
+  /* 190px × 0,652 = 124 px de altura de mayúscula (rango pedido: 120-130).
+     line-height en px, no en múltiplos: las mayúsculas no tienen
+     descendentes, así que se pueden apretar sin que se toquen. */
+  .nombre { font-size: 190px; font-weight: 700; line-height: 155px;
+            color: #FFFFFF; margin-bottom: 36px; }
 
-  .bloque { display: flex; flex-direction: column; gap: 14px; align-items: center; }
-
-  .lema    { font-size: 50px; font-weight: 700; color: #FFFFFF; line-height: 1.1;  white-space: nowrap; }
-  .detalle { font-size: 33px; font-weight: 600; color: #FFFFFF; line-height: 1.25; white-space: nowrap; }
-  .credenciales {
-    font-size: 27px; font-weight: 600; color: #9AA6B2;
-    line-height: 1.25; white-space: nowrap;
-  }
-
-  .cta {
-    background: #2251FF;
-    color: #FFFFFF;
-    font-size: 38px;
-    font-weight: 700;
-    line-height: 1;
-    padding: 22px 32px;
-    white-space: nowrap;
-  }
+  /* 112px × 0,652 = 73 px de altura de mayúscula (rango pedido: 70-80). */
+  .lema   { font-size: 112px; font-weight: 400; line-height: 112px;
+            color: #FFFFFF; }
 </style>
 </head>
 
 <body>
 <div class="og">
   <div class="barra"></div>
-  <div class="nombre">FERNANDO QUEVEDO</div>
-  <div class="bloque">
-    <div class="lema">Finanzas, inversiones e IA</div>
-    <div class="detalle">Empresas y sector público · Foco en el agro · María Pinto</div>
-    <div class="credenciales">Economista PUC · MBA Ejecutivo IAE BS</div>
-  </div>
-  <div class="cta">WhatsApp +56 9 6778 9324</div>
+  <div class="nombre">FERNANDO<br>QUEVEDO</div>
+  <div class="lema">María Pinto</div>
 </div>
 </body>
 </html>
