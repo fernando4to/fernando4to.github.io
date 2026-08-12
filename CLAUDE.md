@@ -117,9 +117,9 @@ configura WhatsApp Business; se administra a mano.
     dueños, equipos y organizaciones.
 
   RESULTADOS
-  • $790 millones (CLP) en ventas acumuladas — empresa edtech que
-    fundé y dirigí durante 7 años, con un equipo de 37 personas
-    (2016–2023).
+  • $790 millones (CLP) en ventas acumuladas — empresa de tecnología
+    educativa que fundé y dirigí durante 7 años, con un equipo de
+    37 personas (2016–2023).
   • De 50 a 200 colegios en 6 meses — piloto nacional con el
     Ministerio de Educación; 450.000 ejercicios entregados (2019).
   • Cierre ordenado tras la crisis social y la pandemia — 100% de
@@ -127,11 +127,23 @@ configura WhatsApp Business; se administra a mano.
 
   TRAYECTORIA
   • 2026–hoy · Director y accionista, Terco SpA — constructora de
-    pinturas y terminaciones, 170 trabajadores.
-  • 2024–2025 · MBA Ejecutivo, IAE Business School · Mentor NAVES-IAE.
-  • 2016–2023 · Fundador y Gerente General, Adaptativamente (edtech).
-  • Magíster en Economía e Ingeniería Comercial, U. Católica ·
-    Certificado en Estrategia de IA, Kellogg (2025).
+    pinturas y terminaciones, 170 trabajadores; diseñé su expansión a
+    vivienda con subsidio (DS 19 / DS 49).
+  • 2024–2025 · Mentor del programa NAVES, IAE Business School
+    (Argentina).
+  • 2016–2023 · Fundador y Gerente General, Adaptativamente
+    (tecnología educativa para colegios).
+  • Antes · Docencia en economía: U. Adolfo Ibáñez y PUC.
+
+  FORMACIÓN
+  • Magíster en Economía (Políticas Públicas) e Ingeniería Comercial,
+    U. Católica de Chile.
+  • Posgrados en Economía en Europa: Máster de investigación, U. de
+    Tilburg (Países Bajos); investigación doctoral, U. de Viena
+    (Austria).
+  • MBA Ejecutivo, IAE Business School (Argentina, 2025).
+  • Certificado en Estrategia de IA, Kellogg School of Management
+    (2025).
 
   CIERRE
   Primera conversación sin costo.
@@ -313,4 +325,18 @@ Crear un segmento nuevo debe tomar minutos.
   segmentos de Google, no del repositorio. Si eso molesta, las salidas
   son: sacar CLAUDE.md del repo (queda solo local), o mover el sitio a
   un repo distinto del que guarda la documentación.
+- **CONVENCIÓN DE TÉRMINOS — "edtech".** Decisión de Fernando: en
+  `/mariapinto/` NO se usa el anglicismo. Va su propia redacción del
+  CV v2: "empresa de tecnología educativa" y "Adaptativamente
+  (tecnología educativa para colegios)". Razón: la audiencia es agro y
+  municipal, "edtech" es jerga de otro sector, y así la landing queda
+  alineada con el PDF que el visitante descarga (que ya decía
+  "tecnología educativa" y "plataforma de aprendizaje para colegios").
+  Donde SÍ se use la palabra en segmentos futuros —`/clases/` y
+  `/emprender/`, cuyas audiencias la manejan— se escribe **"edtech"**:
+  minúscula, una sola palabra, sin guion y sin cursiva. Nunca
+  "EdTech" ni "ed-tech": en estas frases es sustantivo común en
+  español, y el camel case lo haría leer como nombre propio (el nombre
+  de la empresa es Adaptativamente). El término es una palanca de
+  calibración por segmento, no una regla global.
 - **Fases 4 y 5 — pendientes.**
