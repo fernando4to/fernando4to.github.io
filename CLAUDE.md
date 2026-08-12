@@ -218,7 +218,22 @@ Crear un segmento nuevo debe tomar minutos.
   `https://www.linkedin.com/in/fernando-quevedo-callejas/`.
   El QR del CV se omitió a propósito (se genera por JS y no aporta a
   quien ya está en el celular).
-- **Fase 2a y 2b — pendientes.** Falta la tarjeta-gancho y el PDF.
+- **Fase 2b — LISTA.** El PDF de descarga es
+  `CV v2 Orientado al publico.dc.html` del mismo proyecto de Claude
+  Design (decisión de Fernando). Ese archivo es 100% estático (no tiene
+  `data-dc-script` ni variables `{{ }}`), así que se reprodujo en HTML
+  plano imprimible en `_fuente-pdf/cv-asesorias.html` y se imprimió con
+  Chrome headless a `assets/docs/Fernando Quevedo - Asesorias.pdf`
+  (1 página carta, 79,8 KB, límite 1 MB). El comando para regenerarlo
+  está comentado dentro de `_fuente-pdf/cv-asesorias.html`.
+  La carpeta `_fuente-pdf/` empieza con guion bajo a propósito: GitHub
+  Pages ignora esas carpetas, así que la fuente queda versionada pero
+  no publicada. (Por eso el repo NO debe llevar `.nojekyll`.)
+  Ojo: este CV es tamaño CARTA, no 80×160 mm como decía la Fase 2b
+  original; y usa Helvetica con títulos de sección chicos y espaciados,
+  mientras el sitio usa Source Sans 3 con títulos grandes (tomados del
+  CV A4). La paleta sí es idéntica en los tres.
+- **Fase 2a — pendiente.** Falta la tarjeta-gancho.
   Nota: el JPG `Fernando Quevedo - Tarjeta.jpg` existe en el proyecto
   de Claude Design y probablemente sea la tarjeta-gancho.
 - **DECISIÓN PENDIENTE — contenido extra del CV A4.** El CV trae

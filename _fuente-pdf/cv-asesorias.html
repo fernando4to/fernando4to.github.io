@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Fernando Quevedo - Asesorias</title>
+<!--
+  FUENTE DE IMPRESIÓN del PDF que se descarga en /mariapinto/.
+
+  ¿Por qué existe este archivo?
+  El CV vive en Claude Design como "CV v2 Orientado al publico.dc.html".
+  Ese archivo no se puede imprimir directamente: necesita React y un
+  componente <doc-page> que solo existen dentro de la app de Claude
+  Design. Pero su contenido es 100% estático (no tiene lógica ni
+  variables), así que aquí está reproducido tal cual —mismos textos,
+  colores, tamaños y medidas en milímetros— en HTML plano que Chrome
+  puede imprimir sin depender de nada.
+
+  Cómo se regenera el PDF (un solo comando):
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless --disable-gpu --no-pdf-header-footer \
+      --print-to-pdf="assets/docs/Fernando Quevedo - Asesorias.pdf" \
+      "_fuente-pdf/cv-asesorias.html"
+
+  La carpeta empieza con "_" a propósito: GitHub Pages ignora las
+  carpetas que parten con guion bajo, así que este archivo queda en el
+  repo (para poder regenerar el PDF) pero NO se publica en el sitio.
+-->
+<style>
+  /* size: letter = el tamaño del documento original (doc-page size="letter").
+     margin: 0 porque los márgenes visuales van en el padding de .page,
+     igual que en el diseño original; así Chrome tampoco dibuja su
+     encabezado con la fecha y la URL. */
+  @page { size: letter; margin: 0; }
+
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+
+  /* print-color-adjust: exact fuerza a imprimir los colores tal cual,
+     sin el "ahorro de tinta" que aplican los navegadores. */
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .page {
+    box-sizing: border-box;
+    width: 8.5in;
+    height: 11in;
+    overflow: hidden;
+    padding: 11mm 18mm;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #1A1D21;
+    font-size: 10pt;
+    line-height: 1.3;
+    background: #FFFFFF;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  h1 { margin: 0; }
+  p  { margin: 0; }
+
+  /* Barra azul de marca: 34 × 3 px, igual que el original */
+  .barra { width: 34px; height: 3px; background: #2251FF; margin-bottom: 2.2mm; }
+
+  .nombre {
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #051C2C;
+    line-height: 1.1;
+  }
+
+  .titulo-cargo {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #1A1D21;
+    margin-top: 1.6mm;
+  }
+
+  .linea-contacto {
+    font-size: 9pt;
+    color: #5A6470;
+    margin-top: 1.2mm;
+  }
+  .linea-contacto a { color: #5A6470; }
+
+  .seccion { margin-top: 3.2mm; }
+  .seccion--primera { margin-top: 3.4mm; }
+
+  .titulo-seccion {
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #051C2C;
+  }
+  /* La regla fina bajo cada título de sección */
+  .regla { border-top: 0.7pt solid #051C2C; margin: 1.1mm 0 1.6mm; }
+
+  /* Lista de viñetas: rejilla de dos columnas (viñeta | texto), para
+     que el texto de varias líneas quede alineado y no se meta debajo
+     de la viñeta. */
+  .vinetas {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 2.4mm;
+    row-gap: 1.4mm;
+  }
+  .vineta { color: #2251FF; font-size: 7pt; line-height: 1.85; }
+
+  /* Cargo + fechas en una línea, las fechas pegadas a la derecha */
+  .fila-cargo {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 4mm;
+  }
+  .fila-cargo--siguiente { margin-top: 2.2mm; }
+  .fila-cargo strong { color: #1A1D21; }
+  .fechas { font-size: 9pt; color: #5A6470; white-space: nowrap; }
+
+  .parrafo-cargo { margin-top: 0.6mm; text-wrap: pretty; }
+
+  .pie { margin: 3.2mm 0 0.5mm; }
+
+  p, li { text-wrap: pretty; }
+</style>
+</head>
+
+<body>
+<section class="page">
+
+  <div class="barra"></div>
+  <h1 class="nombre">Fernando Quevedo</h1>
+  <div class="titulo-cargo">Economista y empresario · Asesoría estratégica y financiera · María Pinto</div>
+  <div class="linea-contacto">
+    María Pinto, Región Metropolitana ·
+    <a href="https://wa.me/56967789324">+56 9 6778 9324</a> ·
+    <a href="mailto:fquevedoc@proton.me">fquevedoc@proton.me</a> ·
+    <a href="https://www.linkedin.com/in/fernando-quevedo-callejas/">linkedin.com/in/fernando-quevedo-callejas</a>
+  </div>
+
+  <div class="seccion seccion--primera">
+    <div class="titulo-seccion">Perfil</div>
+    <div class="regla"></div>
+    <p>Asesoro a empresas y organizaciones públicas en estrategia, finanzas y decisiones de inversión en inteligencia artificial —y quiero aportar al mundo agrícola de la comuna—, desde María Pinto. Soy economista de la Universidad Católica; durante siete años construí y dirigí una empresa de tecnología educativa que atendió a más de 12.000 alumnos en 20 comunas de Chile, con un equipo que llegó a 37 personas y un piloto nacional con el Ministerio de Educación. Hoy soy además director y accionista de Terco SpA (construcción, 170 trabajadores).</p>
+  </div>
+
+  <div class="seccion">
+    <div class="titulo-seccion">En qué puedo aportar</div>
+    <div class="regla"></div>
+    <div class="vinetas">
+      <span class="vineta">▪</span><p><strong>Presupuestos, proyecciones y evaluación de inversiones</strong> (riego, maquinaria, packing)</p>
+      <span class="vineta">▪</span><p><strong>Inteligencia artificial con criterio</strong>: en qué conviene invertir, en qué no, y por dónde partir (diagnóstico y hoja de ruta)</p>
+      <span class="vineta">▪</span><p><strong>Ventas y proyectos con el Estado</strong> (Mercado Público y licitaciones)</p>
+      <span class="vineta">▪</span><p><strong>Formación en finanzas y emprendimiento</strong> (docencia universitaria)</p>
+    </div>
+  </div>
+
+  <div class="seccion">
+    <div class="titulo-seccion">Resultados seleccionados</div>
+    <div class="regla"></div>
+    <div class="vinetas">
+      <span class="vineta">▪</span><p><strong>Construí una empresa desde cero hasta cerca de $790 millones en ventas acumuladas</strong> y un equipo de hasta 37 personas (Adaptativamente, 2016–2023); la conduje a través de la crisis social de 2019 y la pandemia hasta un cierre ordenado, con todas las indemnizaciones y finiquitos pagados.</p>
+      <span class="vineta">▪</span><p><strong>Conseguí y ejecuté un piloto nacional gratuito con el Ministerio de Educación</strong> que partió en 50 colegios y alcanzó cerca de 200: 450.000 ejercicios entregados en 6 meses, con reportes a autoridades y sostenedores.</p>
+      <span class="vineta">▪</span><p><strong>Finanzas aplicadas a decisiones reales</strong>: presupuestos y proyecciones, indicadores de gestión, cálculo del valor de empresas y proyectos, y fijación de precios. Siete años de práctica en mi propia empresa.</p>
+    </div>
+  </div>
+
+  <div class="seccion">
+    <div class="titulo-seccion">Experiencia</div>
+    <div class="regla"></div>
+
+    <div class="fila-cargo">
+      <strong>Terco SpA — Director y accionista</strong>
+      <span class="fechas">2026–presente</span>
+    </div>
+    <p class="parrafo-cargo">Subcontratista de pinturas y terminaciones para grandes obras habitacionales en la Región Metropolitana; <strong>170 trabajadores</strong>. Desarrollé el plan de expansión hacia viviendas con subsidio del Estado (programas DS19 y DS49) para diversificar los mercados de la compañía, y participo en las decisiones de estrategia, finanzas y gobierno.</p>
+
+    <div class="fila-cargo fila-cargo--siguiente">
+      <strong>Adaptativamente — Fundador y Gerente General</strong>
+      <span class="fechas">Santiago, 2016–2023</span>
+    </div>
+    <p class="parrafo-cargo">Plataforma de aprendizaje para colegios. Más de 12.000 alumnos acumulados en 20 comunas; ventas acumuladas cercanas a <strong>$790 millones</strong> (máximo anual $309 millones, 2021); equipo de hasta 37 personas en pedagogía, ingeniería y ventas; piloto nacional gratuito con el MINEDUC que alcanzó cerca de <strong>200 colegios</strong> (2019); adjudicación de licitaciones públicas de sostenedores; pilotos iniciales en Perú y Colombia.</p>
+
+    <div class="fila-cargo--siguiente"><strong>Docencia y mentoría</strong></div>
+    <p class="parrafo-cargo">Profesor de Introducción a la Economía, U. Adolfo Ibáñez (2008) · Ayudante de Microeconomía y Organización Industrial, PUC (2002–2007) · Mentor del programa NAVES – IAE (2024).</p>
+  </div>
+
+  <div class="seccion">
+    <div class="titulo-seccion">Educación</div>
+    <div class="regla"></div>
+    <div class="vinetas">
+      <span class="vineta">▪</span><p><strong>MBA Ejecutivo</strong>, IAE Business School – Universidad Austral, Argentina (2025). Proyecto final: diseño y validación de mercado de un emprendimiento de tecnología en salud.</p>
+      <span class="vineta">▪</span><p style="text-wrap:balance"><strong>Magíster en Economía, mención Políticas Públicas, e Ingeniería Comercial</strong>, Pontificia Universidad Católica de Chile.</p>
+      <span class="vineta">▪</span><p><strong>Posgrados en Economía en Europa</strong>: Máster de investigación, Universidad de Tilburg (Países Bajos); investigación doctoral, Universidad de Viena (Austria).</p>
+      <span class="vineta">▪</span><p><strong>Certificado en Estrategia de Inteligencia Artificial</strong>, Kellogg School of Management (2025).</p>
+    </div>
+  </div>
+
+  <p class="pie">Español nativo · Inglés fluido · Disponible para asesorías en María Pinto y alrededores</p>
+
+</section>
+</body>
+</html>
