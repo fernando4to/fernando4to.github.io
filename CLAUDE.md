@@ -256,6 +256,29 @@ Crear un segmento nuevo debe tomar minutos.
   gastaría la primera pantalla del celular. Si se quiere de vuelta, es
   un `<img>` y ya existe el JPG.
 - **YA NO QUEDAN [PENDIENTE] en el sitio.** Fase 2 completa.
+- **Contenido de `/mariapinto/` alineado** con
+  `Fernando Quevedo - Asesorias.dc.html` (el CV móvil de 80×160 mm, 4
+  páginas, del mismo proyecto de Claude Design). "Qué resuelvo" y
+  "Resultados" ya eran idénticos. Se corrigió:
+    - Terco: se agregó "; diseñé su expansión a vivienda con subsidio
+      (DS 19 / DS 49)".
+    - 2024–2025: pasó de "MBA Ejecutivo, IAE Business School · Mentor
+      NAVES-IAE" a "Mentor del programa NAVES, IAE Business School
+      (Argentina)" — el MBA se movió a Formación.
+    - "(edtech)" → "(edtech escolar)".
+    - Se agregó el ítem "Antes · Docencia en economía: U. Adolfo Ibáñez
+      y PUC."
+    - Se agregó la sección FORMACIÓN completa (4 ítems), que absorbe el
+      Magíster y el certificado Kellogg que antes colgaban de
+      Trayectoria, y suma el MBA y los posgrados en Tilburg y Viena.
+  Como efecto de esto, la PLANTILLA DE SEGMENTO de más arriba ahora
+  tiene 7 bloques, no 6: Formación entra entre Trayectoria y el CTA.
+- **DIVERGENCIA VIVA — el lema.** Los tres CV usan
+  "…para empresas y sector público — con foco en el agro de María
+  Pinto". El sitio usa el de este documento:
+  "…para empresas, agro y sector público — María Pinto y alrededores".
+  No se cambió porque este documento lo declara copy definitivo.
+  Decisión pendiente de Fernando.
 - **DECISIÓN PENDIENTE — contenido extra del CV A4.** El CV trae
   material que la copy definitiva de `/mariapinto/` no tiene. NO se
   agregó a la landing sin autorización. Es: sección FORMACIÓN aparte;

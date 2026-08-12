@@ -199,6 +199,14 @@ section { margin-top: var(--sp-6); }
   background: var(--c-accent);
 }
 
+/* ---------------------------------------------------------------
+   UTILIDADES PARA SEGMENTOS EN CONSTRUCCIÓN
+   Estas tres clases no las usa /mariapinto/ (ya está completo), pero
+   son las que sirven al crear un segmento nuevo: marcar el contenido
+   que falta de forma bien visible y bajar el tono de un texto
+   secundario. No borrar: las necesita el procedimiento de la Fase 5.
+   --------------------------------------------------------------- */
+
 /* Texto secundario dentro de una lista (ej. el detalle de un cargo) */
 .suave { color: var(--c-ink-soft); }
 
