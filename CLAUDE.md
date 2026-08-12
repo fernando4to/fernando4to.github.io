@@ -339,4 +339,8 @@ Crear un segmento nuevo debe tomar minutos.
   español, y el camel case lo haría leer como nombre propio (el nombre
   de la empresa es Adaptativamente). El término es una palanca de
   calibración por segmento, no una regla global.
+- **CRITERIO DE ACEPTACIÓN 2 — CUMPLIDO.** Fernando corrió Lighthouse
+  móvil sobre el sitio en vivo: **Performance 99, Accesibilidad 100**
+  (la meta era ≥ 90 en ambos). Medido con la tipografía
+  auto-hospedada de 28 KB y sin JavaScript.
 - **Fases 4 y 5 — pendientes.**
