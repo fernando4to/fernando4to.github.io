@@ -293,4 +293,24 @@ Crear un segmento nuevo debe tomar minutos.
   nuevo "Antes · Docencia en economía: U. Adolfo Ibáñez y PUC". El CV
   además usa otro lema: "...para empresas y sector público — con foco
   en el agro de María Pinto".
-- **Fases 3, 4, 5 — pendientes.**
+- **Fase 3 — LISTA.** Repo público `fernando4to/fernando4to.github.io`
+  creado, `main` empujada, GitHub Pages activo (rama `main`, raíz),
+  HTTPS forzado y `http://` redirige con 301.
+  URLs en vivo:
+    - Raíz (indexable):  https://fernando4to.github.io/
+    - Segmento:          https://fernando4to.github.io/mariapinto/
+  Verificado en vivo: los dos HTML, el CSS, la fuente, el og:image y el
+  PDF responden 200 con el tipo correcto; una ruta inventada cae en
+  nuestro 404.html; `noindex` está solo en el segmento y no en la raíz.
+  Confirmado que `_fuente-pdf/` y `_fuente-img/` devuelven 404: la
+  exclusión por guion bajo de Jekyll funciona. NO agregar `.nojekyll`.
+- **NOTA DE PRIVACIDAD.** El repo es público porque GitHub Pages gratis
+  solo publica desde repos públicos. Consecuencia: este CLAUDE.md es
+  legible por cualquiera en
+  github.com/fernando4to/fernando4to.github.io, y al crear los
+  segmentos futuros sus carpetas quedarán a la vista en el repo aunque
+  las páginas lleven `noindex`. Es decir, el `noindex` esconde los
+  segmentos de Google, no del repositorio. Si eso molesta, las salidas
+  son: sacar CLAUDE.md del repo (queda solo local), o mover el sitio a
+  un repo distinto del que guarda la documentación.
+- **Fases 4 y 5 — pendientes.**
