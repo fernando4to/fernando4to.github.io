@@ -13,6 +13,12 @@
 <title>Fernando Quevedo — Finanzas, inversiones e IA · María Pinto</title>
 <meta name="description" content="Finanzas, inversiones e IA para empresas, agro y sector público — María Pinto y alrededores. Primera conversación sin costo.">
 
+<!-- preload de la tipografía: el navegador la empieza a bajar de
+     inmediato en vez de esperar a leer el CSS. Gana ~200 ms en 4G. -->
+<link rel="preload" href="/assets/fonts/source-sans-3-latin.woff2"
+      as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/base.css">
+
 <!-- Open Graph: los datos que lee WhatsApp para armar la vista previa
      del link. Las URL van ABSOLUTAS (con https:// y dominio); WhatsApp
      no resuelve rutas relativas. -->
@@ -23,8 +29,6 @@
 <!-- FASE 2a: aquí se conecta el recorte 1200×630 de la tarjeta-gancho -->
 <meta property="og:image" content="https://fernando4to.github.io/assets/img/og-mariapinto.jpg">
 <meta property="og:locale" content="es_CL">
-
-<link rel="stylesheet" href="/assets/css/base.css">
 </head>
 
 <body>
@@ -32,13 +36,14 @@
 
   <!-- FASE 2a: reemplazar por la tarjeta-gancho / retrato -->
   <div class="placeholder-img">
-    <span class="pendiente">[PENDIENTE]</span>&nbsp; Imagen (Fase 2a)
+    <span class="pendiente">[PENDIENTE]</span> Imagen (Fase 2a)
   </div>
 
   <!-- 1. Nombre + propuesta de valor -->
   <header>
+    <div class="barra-marca" aria-hidden="true"></div>
     <h1 class="nombre">Fernando Quevedo</h1>
-    <p class="propuesta">
+    <p class="lema">
       Finanzas, inversiones e IA para empresas, agro y sector público
       — María Pinto y alrededores
     </p>
@@ -65,50 +70,33 @@
   <!-- 3. Resultados -->
   <section>
     <h2 class="titulo-seccion">Resultados</h2>
-    <ul class="resultados">
-      <li>
-        <span class="cifra">$790 millones (CLP) en ventas acumuladas</span>
-        <span class="contexto">Empresa edtech que fundé y dirigí durante
-          7 años, con un equipo de 37 personas (2016–2023).</span>
-      </li>
-      <li>
-        <span class="cifra">De 50 a 200 colegios en 6 meses</span>
-        <span class="contexto">Piloto nacional con el Ministerio de
-          Educación; 450.000 ejercicios entregados (2019).</span>
-      </li>
-      <li>
-        <span class="cifra">Cierre ordenado tras la crisis social y la
-          pandemia</span>
-        <span class="contexto">100% de finiquitos e indemnizaciones
-          pagados.</span>
-      </li>
+    <ul class="lista">
+      <li><strong>$790 millones (CLP) en ventas acumuladas</strong> —
+        empresa edtech que fundé y dirigí durante 7 años, con un equipo
+        de 37 personas (2016–2023).</li>
+      <li><strong>De 50 a 200 colegios en 6 meses</strong> — piloto
+        nacional con el Ministerio de Educación; 450.000 ejercicios
+        entregados (2019).</li>
+      <li><strong>Cierre ordenado tras la crisis social y la
+        pandemia</strong> — 100% de finiquitos e indemnizaciones
+        pagados.</li>
     </ul>
   </section>
 
   <!-- 4. Trayectoria -->
   <section>
     <h2 class="titulo-seccion">Trayectoria</h2>
-    <ul class="trayectoria">
-      <li>
-        <span class="periodo">2026–hoy · Director y accionista, Terco SpA</span>
-        <span class="detalle">Constructora de pinturas y terminaciones,
-          170 trabajadores.</span>
-      </li>
-      <li>
-        <span class="periodo">2024–2025 · MBA Ejecutivo, IAE Business School</span>
-        <span class="detalle">Mentor NAVES-IAE.</span>
-      </li>
-      <li>
-        <span class="periodo">2016–2023 · Fundador y Gerente General,
-          Adaptativamente</span>
-        <span class="detalle">Edtech.</span>
-      </li>
-      <li>
-        <span class="periodo">Magíster en Economía e Ingeniería Comercial,
-          U. Católica</span>
-        <span class="detalle">Certificado en Estrategia de IA,
-          Kellogg (2025).</span>
-      </li>
+    <ul class="lista">
+      <li><strong>2026–hoy</strong> · Director y accionista, Terco SpA
+        — <span class="suave">constructora de pinturas y terminaciones,
+        170 trabajadores.</span></li>
+      <li><strong>2024–2025</strong> · MBA Ejecutivo, IAE Business
+        School · <span class="suave">Mentor NAVES-IAE.</span></li>
+      <li><strong>2016–2023</strong> · Fundador y Gerente General,
+        Adaptativamente <span class="suave">(edtech).</span></li>
+      <li><strong>Magíster en Economía e Ingeniería Comercial</strong>,
+        U. Católica · <span class="suave">Certificado en Estrategia de
+        IA, Kellogg (2025).</span></li>
     </ul>
   </section>
 
@@ -118,23 +106,25 @@
 
     <!-- El texto prellenado identifica el segmento: el primer mensaje
          que llega ya dice de dónde vino el contacto. -->
-    <a class="boton boton--wa"
+    <a class="boton boton--primario"
        href="https://wa.me/56967789324?text=Hola%20Fernando%2C%20vi%20tu%20p%C3%A1gina%20%28Mar%C3%ADa%20Pinto%29">
       Escríbeme por WhatsApp — respondo el mismo día
     </a>
 
     <!-- 6. Descarga del PDF -->
     <!-- FASE 2b: el archivo se deposita en /assets/docs/ -->
-    <a class="boton boton--pdf"
+    <a class="boton boton--secundario"
        href="/assets/docs/Fernando%20Quevedo%20-%20Asesorias.pdf"
        download>
       Descargar PDF (una página)
     </a>
 
-    <p class="contacto-plano">
-      WhatsApp <span class="dato">+56 9 6778 9324</span><br>
-      Correo <span class="dato">fquevedoc@proton.me</span><br>
-      LinkedIn <span class="pendiente">[PENDIENTE: URL del perfil]</span>
+    <p class="contacto">
+      <span class="etiqueta">WhatsApp</span>
+      <span class="dato">+56 9 6778 9324</span><br>
+      <span class="etiqueta">Correo</span>
+      <span class="dato">fquevedoc@proton.me</span><br>
+      <a href="https://www.linkedin.com/in/fernando-quevedo-callejas/">in/fernando-quevedo-callejas</a>
     </p>
   </section>
 

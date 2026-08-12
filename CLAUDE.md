@@ -199,5 +199,35 @@ Crear un segmento nuevo debe tomar minutos.
 - **Fase 1 — LISTA.** Esqueleto completo, `base.css` con tokens
   provisionales, raíz neutra, `/mariapinto/` con el copy definitivo,
   404. Pendientes visibles: URL de LinkedIn, imagen (2a), PDF (2b).
-- **Fase 2 — pendiente.** Esperando assets en `assets-entrada/`.
+- **Fase 2c — LISTA (adelantada).** Importado el sistema visual del
+  proyecto de Claude Design "# CV de una página"
+  (`bfb43113-8198-41fb-9aa1-2b2ad1a5f38c`), archivo
+  `Fernando Quevedo - Asesorias A4 copy.dc.html`, vía el MCP
+  claude_design. Confirmado que su HTML NO es incrustable: depende de
+  `support.js` (70,6 KB de runtime React generado) y de `doc-page.js`
+  (shell de documento paginado con `@page` y unidades en mm). Se
+  extrajo a tokens:
+    - Colores: `#051C2C` azul profundo · `#2251FF` azul vivo ·
+      `#1A1D21` tinta · `#5A6470` gris · `#FFFFFF` fondo.
+    - Tipografía: Source Sans 3 (variable, subconjunto latino,
+      28 KB), auto-hospedada en `/assets/fonts/`.
+    - Jerarquía: barra azul sobre el nombre, nombre en versalitas,
+      títulos de sección grandes con línea fina bajo, viñeta cuadrada
+      azul dibujada en CSS.
+  Resuelto el [PENDIENTE] de LinkedIn:
+  `https://www.linkedin.com/in/fernando-quevedo-callejas/`.
+  El QR del CV se omitió a propósito (se genera por JS y no aporta a
+  quien ya está en el celular).
+- **Fase 2a y 2b — pendientes.** Falta la tarjeta-gancho y el PDF.
+  Nota: el JPG `Fernando Quevedo - Tarjeta.jpg` existe en el proyecto
+  de Claude Design y probablemente sea la tarjeta-gancho.
+- **DECISIÓN PENDIENTE — contenido extra del CV A4.** El CV trae
+  material que la copy definitiva de `/mariapinto/` no tiene. NO se
+  agregó a la landing sin autorización. Es: sección FORMACIÓN aparte;
+  "diseñé su expansión a vivienda con subsidio (DS 19 / DS 49)" en
+  Terco; "(Argentina)" en IAE; "edtech escolar"; "Magíster en Economía
+  (Políticas Públicas)"; "Kellogg School of Management"; y un ítem
+  nuevo "Antes · Docencia en economía: U. Adolfo Ibáñez y PUC". El CV
+  además usa otro lema: "...para empresas y sector público — con foco
+  en el agro de María Pinto".
 - **Fases 3, 4, 5 — pendientes.**

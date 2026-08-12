@@ -2,45 +2,49 @@
    base.css — hoja de estilos ÚNICA para todo el sitio.
    Todos los segmentos heredan de aquí: un cambio se propaga solo.
 
-   Está dividida en 3 bloques:
-     1. TOKENS      → variables de color, tipografía y espacio
-     2. BASE        → estilos de los elementos HTML crudos
-     3. COMPONENTES → las piezas reutilizables (botones, listas...)
+   IDENTIDAD VISUAL: extraída del CV A4 hecho en Claude Design
+   ("Fernando Quevedo - Asesorias A4"). Los colores, la tipografía y
+   la jerarquía de abajo son los de ese documento, replicados en HTML
+   semántico. El export original NO se incrusta: depende de React
+   (70 KB) y de un shell de impresión con unidades en milímetros, así
+   que no funcionaría sin JavaScript ni se adaptaría a un celular.
 
-   Para cambiar la identidad visual del sitio completo,
-   basta con editar el bloque 1.
+   Bloques:
+     1. TOKENS      → variables de color, tipografía y espacio
+     2. TIPOGRAFÍA  → la fuente auto-hospedada
+     3. BASE        → elementos HTML crudos
+     4. COMPONENTES → piezas reutilizables
    ============================================================ */
 
 
 /* ------------------------------------------------------------
    1. TOKENS  (design tokens = valores con nombre, definidos una
-   sola vez y reutilizados en todo el archivo mediante var(...))
-
-   PROVISIONAL: estos colores y tipografías se reemplazarán en la
-   Fase 2c con los extraídos del CV de Claude Design.
+   sola vez y reutilizados mediante var(...). Para cambiar la
+   identidad del sitio completo, edita solo este bloque.)
    ------------------------------------------------------------ */
 :root {
-  /* Color — todos verificados con contraste WCAG AA sobre su fondo */
-  --c-ink:        #1a2332;  /* texto principal            (14.5:1 s/blanco) */
-  --c-ink-soft:   #4a5568;  /* texto secundario            (7.6:1 s/blanco) */
-  --c-brand:      #123a5f;  /* azul institucional         (11.6:1 s/blanco) */
-  --c-accent:     #0a6e43;  /* verde acción / WhatsApp     (6.3:1 c/blanco) */
-  --c-bg:         #ffffff;  /* fondo de página */
-  --c-surface:    #f2f5f8;  /* fondo de bloques destacados */
-  --c-line:       #d8dee6;  /* líneas divisorias */
+  /* Color — los 5 del CV. Entre paréntesis, el contraste medido
+     contra blanco: WCAG AA exige 4.5:1 para texto normal. */
+  --c-deep:     #051C2C;  /* azul profundo: nombre y títulos  (16.4:1) */
+  --c-accent:   #2251FF;  /* azul vivo: barras, viñetas, CTA   (5.6:1) */
+  --c-ink:      #1A1D21;  /* texto de lectura                 (15.3:1) */
+  --c-ink-soft: #5A6470;  /* texto secundario                  (6.0:1) */
+  --c-bg:       #FFFFFF;
+  --c-line:     #D5DAE0;  /* líneas divisorias suaves */
 
-  /* Tipografía — pila del sistema: cero descargas, cero KB, se ve
-     nativa en Android y en iPhone. */
-  --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-               "Helvetica Neue", Arial, sans-serif;
+  /* Tipografía — Source Sans 3, la del CV, auto-hospedada. */
+  --font-base: "Source Sans 3", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  --fs-name:    1.75rem;   /* nombre */
-  --fs-tagline: 1.0625rem; /* propuesta de valor */
-  --fs-h2:      0.8125rem; /* títulos de sección */
-  --fs-body:    1rem;
-  --fs-small:   0.875rem;
+  /* Escala derivada del CV, donde el cuerpo es 11pt:
+     nombre 26pt (2.4×) · título de sección 15pt (1.36×) */
+  --fs-body:    1.0625rem;  /* 17px: cómodo en celular */
+  --fs-nombre:  1.875rem;
+  --fs-lema:    1.0625rem;
+  --fs-seccion: 1.25rem;
+  --fs-small:   0.9375rem;
 
-  /* Espacio — escala única, para que todo respire igual */
+  /* Espacio — escala única para que todo respire igual */
   --sp-1: 0.25rem;
   --sp-2: 0.5rem;
   --sp-3: 0.75rem;
@@ -49,22 +53,46 @@
   --sp-6: 2rem;
   --sp-7: 3rem;
 
-  --radius: 10px;
-  --ancho-max: 34rem;  /* ancho de lectura cómodo en desktop */
+  --radius: 8px;
+  --ancho-max: 34rem;  /* ancho de lectura cómodo en pantalla grande */
 }
 
 
 /* ------------------------------------------------------------
-   2. BASE
+   2. TIPOGRAFÍA
+
+   Source Sans 3 es una fuente VARIABLE: un solo archivo de 28 KB
+   cubre los pesos 400 a 700, en vez de tres archivos separados.
+   Se sirve desde este mismo sitio (no desde Google) para que el
+   celular abra una sola conexión y no dependa de terceros.
+
+   font-display:swap = el texto se muestra de inmediato con la
+   fuente del sistema y cambia a Source Sans 3 al cargar. Nunca
+   hay una pantalla en blanco esperando la fuente.
+   ------------------------------------------------------------ */
+@font-face {
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 400 700;      /* rango, no un valor: es variable */
+  font-display: swap;
+  src: url("/assets/fonts/source-sans-3-latin.woff2") format("woff2");
+  /* Subconjunto latino: cubre tildes, ñ, ¿ y los guiones largos. */
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC,
+                 U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+                 U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+                 U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+/* ------------------------------------------------------------
+   3. BASE
    ------------------------------------------------------------ */
 
 /* border-box = el padding no agranda las cajas. Evita desbordes
    horizontales en pantallas angostas. */
 *, *::before, *::after { box-sizing: border-box; }
 
-html {
-  -webkit-text-size-adjust: 100%;  /* Safari iOS no reescala el texto solo */
-}
+html { -webkit-text-size-adjust: 100%; }  /* Safari iOS no reescala solo */
 
 body {
   margin: 0;
@@ -72,123 +100,113 @@ body {
   color: var(--c-ink);
   font-family: var(--font-base);
   font-size: var(--fs-body);
-  line-height: 1.55;
-  /* Evita palabras cortadas raro y desbordes en celulares angostos */
-  overflow-wrap: break-word;
+  line-height: 1.5;
+  overflow-wrap: break-word;  /* nada se desborda en celulares angostos */
 }
 
 h1, h2, h3, p, ul { margin: 0; }
 ul { padding: 0; list-style: none; }
 
-a { color: var(--c-brand); }
+strong { font-weight: 700; color: inherit; }
 
-strong { font-weight: 650; }
+a { color: var(--c-accent); }
 
-/* Contenedor de la página: mobile-first (padding chico), se centra
-   y se limita en pantallas grandes. */
+/* Foco visible para quien navega con teclado (requisito WCAG). */
+a:focus-visible {
+  outline: 3px solid var(--c-accent);
+  outline-offset: 2px;
+}
+
+/* Contenedor de página: mobile-first (padding chico), se centra y se
+   limita en pantallas grandes. */
 .wrap {
   max-width: var(--ancho-max);
   margin: 0 auto;
   padding: var(--sp-6) var(--sp-4) var(--sp-7);
 }
 
-/* Cada sección separada por una línea fina */
-section + section {
-  margin-top: var(--sp-6);
-  padding-top: var(--sp-6);
-  border-top: 1px solid var(--c-line);
-}
-
 
 /* ------------------------------------------------------------
-   3. COMPONENTES
+   4. COMPONENTES
    ------------------------------------------------------------ */
 
-/* --- Encabezado: nombre + propuesta de valor --- */
+/* --- Barra azul de arranque (en el CV: 12mm × 1.2mm sobre el
+       nombre). Es la firma visual de la identidad. --- */
+.barra-marca {
+  width: 3rem;
+  height: 4px;
+  background: var(--c-accent);
+  margin-bottom: var(--sp-3);
+}
+
+/* --- Nombre --- */
 .nombre {
-  font-size: var(--fs-name);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  color: var(--c-brand);
-  text-transform: uppercase;
+  font-size: var(--fs-nombre);
   font-weight: 700;
+  color: var(--c-deep);
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
 }
 
-.propuesta {
+/* --- Propuesta de valor: en el CV va en azul profundo y semibold,
+       no en gris. Es afirmación, no pie de foto. --- */
+.lema {
   margin-top: var(--sp-3);
-  font-size: var(--fs-tagline);
-  color: var(--c-ink-soft);
-  line-height: 1.45;
+  font-size: var(--fs-lema);
+  font-weight: 600;
+  color: var(--c-deep);
+  line-height: 1.35;
+  text-wrap: pretty;  /* evita que quede una palabra sola al final */
 }
 
-/* --- Título de sección: chico, en mayúsculas, discreto --- */
+/* --- Sección: título grande en versalitas + línea fina, tal como
+       el CV. --- */
+section { margin-top: var(--sp-6); }
+
+/* La línea bajo el título es un borde del propio <h2>: no hace falta
+   un <div> vacío decorativo como en el export del CV. */
 .titulo-seccion {
-  font-size: var(--fs-h2);
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
+  font-size: var(--fs-seccion);
   font-weight: 700;
-  color: var(--c-accent);
+  color: var(--c-deep);
+  text-transform: uppercase;
+  line-height: 1.15;
+  padding-bottom: var(--sp-1);
+  border-bottom: 1px solid var(--c-deep);
   margin-bottom: var(--sp-4);
 }
 
-/* --- Lista con viñeta propia (el • del texto original) --- */
+/* --- Listas con viñeta cuadrada azul ---
+   La viñeta se dibuja con CSS (una caja de color), no con el
+   carácter ▪: ese glifo no viene en el subconjunto latino de la
+   fuente y cada navegador lo sustituiría por uno distinto. --- */
 .lista > li {
   position: relative;
-  padding-left: var(--sp-4);
+  padding-left: 1.15rem;
   margin-bottom: var(--sp-3);
-}
-.lista > li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: var(--c-accent);
-  font-weight: 700;
+  text-wrap: pretty;
 }
 .lista > li:last-child { margin-bottom: 0; }
 
-/* --- Resultados: la cifra destacada arriba, el contexto abajo --- */
-.resultados > li {
-  padding: var(--sp-4);
-  background: var(--c-surface);
-  border-radius: var(--radius);
-  border-left: 3px solid var(--c-accent);
-  margin-bottom: var(--sp-3);
-}
-.resultados > li:last-child { margin-bottom: 0; }
-
-.cifra {
-  display: block;
-  font-weight: 700;
-  color: var(--c-brand);
-  font-size: 1.0625rem;
-  line-height: 1.3;
-}
-.contexto {
-  display: block;
-  margin-top: var(--sp-1);
-  font-size: var(--fs-small);
-  color: var(--c-ink-soft);
+.lista > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;          /* alineada con la primera línea de texto */
+  width: 0.4rem;
+  height: 0.4rem;
+  background: var(--c-accent);
 }
 
-/* --- Trayectoria --- */
-.trayectoria > li {
-  margin-bottom: var(--sp-3);
-  font-size: var(--fs-small);
-}
-.trayectoria > li:last-child { margin-bottom: 0; }
-.periodo {
-  display: block;
-  font-weight: 700;
-  color: var(--c-ink);
-  font-size: var(--fs-small);
-}
-.detalle { color: var(--c-ink-soft); }
+/* Texto secundario dentro de una lista (ej. el detalle de un cargo) */
+.suave { color: var(--c-ink-soft); }
+
 
 /* --- Botones ---
    min-height 52px: el mínimo cómodo para el dedo en un celular. */
 .boton {
-  /* flex centra el texto vertical y horizontalmente sin depender de
-     un line-height exacto, incluso si el texto ocupa dos líneas. */
+  /* flex centra el texto en los dos ejes aunque ocupe dos líneas */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -198,56 +216,53 @@ section + section {
   border-radius: var(--radius);
   text-align: center;
   text-decoration: none;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.3;
 }
 
-.boton--wa {
+.boton--primario {
   background: var(--c-accent);
-  color: #ffffff;
-  font-size: 1.0625rem;
+  color: #FFFFFF;
+  font-size: var(--fs-body);
 }
 
-.boton--pdf {
+.boton--secundario {
   background: var(--c-bg);
-  color: var(--c-brand);
-  border: 1.5px solid var(--c-brand);
+  color: var(--c-deep);
+  border: 1.5px solid var(--c-deep);
   font-size: var(--fs-body);
   margin-top: var(--sp-3);
 }
 
-/* Foco visible para quien navega con teclado (requisito de
-   accesibilidad WCAG). */
-a:focus-visible {
-  outline: 3px solid var(--c-brand);
-  outline-offset: 2px;
+/* --- Cierre y contacto --- */
+.cierre {
+  font-size: var(--fs-lema);
+  font-weight: 700;
+  color: var(--c-deep);
+  margin-bottom: var(--sp-4);
 }
 
-/* --- Datos de contacto en texto plano (no son enlaces a propósito:
-   el visor de WhatsApp en Android no siempre los activa, así que se
-   muestran completos para copiar o marcar a mano). --- */
-.contacto-plano {
+/* Teléfono y correo van como texto plano a propósito: el visor de
+   enlaces de WhatsApp en Android no siempre los activa, así que se
+   muestran completos para copiar o marcar a mano. */
+.contacto {
   margin-top: var(--sp-4);
   font-size: var(--fs-small);
   color: var(--c-ink-soft);
-  line-height: 1.7;
+  line-height: 1.75;
 }
-.contacto-plano .dato { color: var(--c-ink); font-weight: 600; }
+.contacto .etiqueta { color: var(--c-accent); font-weight: 700; }
+.contacto .dato     { color: var(--c-ink);    font-weight: 600; }
 
-.cierre {
-  margin-bottom: var(--sp-4);
-  font-weight: 650;
-  color: var(--c-ink);
-}
 
 /* --- Marca de contenido pendiente: visible a propósito --- */
 .pendiente {
   display: inline-block;
   padding: 0 var(--sp-2);
-  background: #fff3cd;
-  border: 1px dashed #a07800;
+  background: #FFF3CD;
+  border: 1px dashed #8A6500;
   border-radius: 4px;
-  color: #6b4f00;
+  color: #5C4400;
   font-size: var(--fs-small);
   font-weight: 600;
 }
@@ -257,15 +272,17 @@ a:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--sp-2);
   text-align: center;
   padding: var(--sp-6) var(--sp-4);
   margin-bottom: var(--sp-5);
-  background: var(--c-surface);
+  background: #F4F6F8;
   border: 2px dashed var(--c-line);
   border-radius: var(--radius);
   color: var(--c-ink-soft);
   font-size: var(--fs-small);
 }
+
 
 /* --- Tarjeta neutra de la raíz --- */
 .tarjeta-neutra {
@@ -277,8 +294,7 @@ a:focus-visible {
 
 .bloque-cta { margin-top: var(--sp-6); }
 
-.linkedin {
-  display: block;
+.linea-linkedin {
   margin-top: var(--sp-4);
   text-align: center;
   font-size: var(--fs-small);
@@ -287,12 +303,14 @@ a:focus-visible {
 
 /* ------------------------------------------------------------
    AJUSTES PARA PANTALLA GRANDE
-   Mobile-first: lo de arriba es el celular; esto solo agranda.
+   Mobile-first: todo lo de arriba es el celular; esto solo agranda.
    ------------------------------------------------------------ */
 @media (min-width: 40rem) {
   :root {
-    --fs-name: 2.25rem;
-    --fs-tagline: 1.125rem;
+    --fs-nombre:  2.5rem;
+    --fs-lema:    1.1875rem;
+    --fs-seccion: 1.375rem;
   }
   .wrap { padding: var(--sp-7) var(--sp-5); }
+  .barra-marca { width: 3.5rem; height: 5px; }
 }
