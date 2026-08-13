@@ -429,14 +429,44 @@ o esperar a que expire el caché.
 - **Fase 3 — LISTA.** Repo público `fernando4to/fernando4to.github.io`
   creado, `main` empujada, GitHub Pages activo (rama `main`, raíz),
   HTTPS forzado y `http://` redirige con 301.
-  URLs en vivo:
-    - Raíz (indexable):  https://fernando4to.github.io/
-    - Segmento:          https://fernando4to.github.io/mariapinto/
   Verificado en vivo: los dos HTML, el CSS, la fuente, el og:image y el
   PDF responden 200 con el tipo correcto; una ruta inventada cae en
   nuestro 404.html; `noindex` está solo en el segmento y no en la raíz.
   Confirmado que `_fuente-pdf/` y `_fuente-img/` devuelven 404: la
   exclusión por guion bajo de Jekyll funciona. NO agregar `.nojekyll`.
+  Las URLs `fernando4to.github.io` de esta fase quedaron superadas por
+  el dominio propio de la Fase 4; hoy redirigen con 301 hacia él.
+- **Fase 4 — LISTA.** Dominio propio `www.fernandoquevedo.cl` en
+  producción. URLs en vivo:
+    - Raíz (indexable):  https://www.fernandoquevedo.cl/
+    - Segmento:          https://www.fernandoquevedo.cl/mariapinto/
+  Cómo quedó armado:
+    - `fernandoquevedo.cl` registrado en NIC Chile el 2026-08-12, vence
+      2027-08-12. NIC delega en los nameservers de Cloudflare
+      (`bob.ns.cloudflare.com`, `novalee.ns.cloudflare.com`), y
+      Cloudflare se usa SOLO como DNS.
+    - 9 registros, todos en **DNS only (nube gris)**: 4 `A` y 4 `AAAA`
+      en el apex apuntando a GitHub Pages
+      (185.199.108-111.153 y 2606:50c0:8000-8003::153), más un `CNAME`
+      de `www` a `fernando4to.github.io`.
+    - LA NUBE GRIS NO ES OPCIONAL. Con el proxy de Cloudflare encendido
+      (nube naranja), GitHub no puede emitir su certificado, "Enforce
+      HTTPS" queda inhabilitado, y con el modo SSL "Flexible" el sitio
+      entra en bucle de redirecciones. No da un error claro: solo no
+      funciona. Se verifica pidiendo el `A` del dominio: si devuelve
+      las IP de GitHub (185.199.x) está en gris; si devuelve IP de
+      Cloudflare (104.x / 172.67.x) está proxeado.
+    - `www` es el nombre canónico; el apex redirige hacia él. El
+      archivo `CNAME` en la raíz del repo (`www.fernandoquevedo.cl`) lo
+      creó GitHub al fijar el dominio; no editarlo a mano.
+    - Certificado emitido para AMBOS nombres (`www.fernandoquevedo.cl`
+      y `fernandoquevedo.cl`) y HTTPS forzado.
+    - Las 3 URLs absolutas del sitio (`og:url` de la raíz, `og:url` y
+      `og:image` de `/mariapinto/`) apuntan ya al dominio nuevo.
+  ORDEN QUE HAY QUE RESPETAR si algún día se repite: primero los
+  registros DNS, y recién cuando resuelven se fija el dominio en
+  GitHub. Al revés, `fernando4to.github.io` empieza a redirigir hacia
+  un dominio que todavía no existe y el sitio queda inaccesible.
 - **NOTA DE PRIVACIDAD.** El repo es público porque GitHub Pages gratis
   solo publica desde repos públicos. Consecuencia: este CLAUDE.md es
   legible por cualquiera en
@@ -487,4 +517,4 @@ o esperar a que expire el caché.
   imagen dice quién, qué y dónde; el `og:title` y la `og:description`
   dicen el resto en texto del sistema, que WhatsApp siempre dibuja
   nítido y escalable.
-- **Fases 4 y 5 — pendientes.**
+- **Fase 5 — pendiente.**
