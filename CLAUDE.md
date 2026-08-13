@@ -160,9 +160,10 @@ placeholders de imagen, 404. Commit.
 
 FASE 2 — Assets (te los entregaré DE A UNO en assets-entrada/;
 al integrar cada uno, avísame y pídeme el siguiente):
-  a) Tarjeta-gancho (imagen 1080×1350): genera de ella un recorte
-     og-image de 1200×630, JPEG ≤ 300 KB (WhatsApp rechaza og:image
-     pesadas), y conéctala al head de /mariapinto/.
+  a) Tarjeta-gancho (imagen 1080×1350): conéctala al head de
+     /mariapinto/. DEROGADO en cuanto a la og-image: su diseño, peso y
+     medidas los fija la SPEC CANÓNICA TARJETA v4, más arriba. Esta
+     línea se conserva solo como registro del plan original.
   b) CV one-pager PDF (80×160 mm): a /assets/docs/ con el nombre
      "Fernando Quevedo - Asesorias.pdf", conectado al botón de
      descarga. Verifica que pese < 1 MB.
@@ -201,6 +202,90 @@ Crear un segmento nuevo debe tomar minutos.
 5. Ninguna página enlaza a otro segmento.
 6. Crear un segmento nuevo = copiar carpeta + editar textos, sin
    tocar CSS.
+
+## SPEC CANÓNICA TARJETA v4
+
+Esta especificación manda sobre `/assets/img/og-mariapinto.jpg` y sobre
+las metas de descripción de `/mariapinto/`. REEMPLAZA ÍNTEGRAMENTE toda
+instrucción anterior sobre la og-image (incluida la v3 de 2 niveles y el
+string de descripción de 89 caracteres, ambos ya eliminados de este
+documento). Todo cambio futuro reemplaza esta spec completa — nunca la
+parcha.
+
+### LA IMAGEN (/assets/img/og-mariapinto.jpg)
+Lienzo 1200×630 px, JPEG calidad 80-85, peso ≤ 300 KB. Fondo y acento:
+tokens de `/assets/css/base.css` (hoy `#051C2C` y `#2251FF` — si los
+tokens cambian, mandan los tokens). Texto blanco, centrado, barra de
+acento arriba. Sin versalitas, sin letter-spacing, sin degradados, sin
+sombras. JPEG baseline, nunca progresivo: WhatsApp no dibuja los
+progresivos.
+
+TRES niveles de texto, en este orden:
+  L1: Fernando Quevedo — CAJA MIXTA (no todo mayúsculas), bold,
+      UNA sola línea, sin quiebre. Altura de mayúscula 81 px.
+  L2: Finanzas, inversiones e IA — altura de mayúscula 60-62 px.
+  L3: María Pinto — altura de mayúscula 60-62 px.
+Márgenes: laterales ≥ 80 px en las tres líneas; verticales ≥ 63 px;
+el aire sobrante se distribuye alrededor del bloque.
+
+POR QUÉ L1 MIDE 81 px Y NO 92-100. La v4 se especificó pidiendo 92-100
+px para L1, y es geométricamente imposible: "Fernando Quevedo" en caja
+mixta bold ocupa 8,346 em, así que a 92 px de altura de mayúscula
+(font-size 141,2) mediría 1178 px — 138 px más que los 1040 disponibles
+con márgenes de 80. El máximo real es 81 px en bold (85 px en regular).
+Con L1 a 81 y L2 en su piso de 60, el ratio de jerarquía queda en 1,350
+y no en el 1,4 que pedía la spec; para llegar a 1,4 habría que bajar L2
+a 58, bajo su propio piso. Enmienda decidida por Fernando: se conservan
+el bold, la línea única, los márgenes y el piso de 60, y se acepta el
+ratio 1,350. Razón: la jerarquía la construye el peso tanto como el
+tamaño, y la única variante que subía el ratio (L1 y L2 en el mismo
+peso regular) hacía ver el nombre MENOS dominante, no más.
+
+### REGLA DE RESOLUCIÓN DE CONFLICTOS (permanente)
+1. Si un texto no cabe: primero se corta contenido.
+2. Si el contenido es atómico (un nombre propio): se reduce tamaño,
+   nunca bajo 60 px de altura de mayúscula.
+3. Jamás se compensa rompiendo márgenes mínimos ni la jerarquía.
+4. Si (1)-(3) no pueden cumplirse a la vez: DETENTE y reporta variantes
+   medidas al píxel. No inventes contenido.
+Aplicación conocida: L2 entra al ras — mide 954 px de los 1040
+disponibles y su altura de mayúscula máxima es 64,5 px. No hay espacio
+para alargarla. Nunca se comprime el tracking ni se achica por debajo
+de los pisos.
+
+### CÓMO SE MIDE LA ALTURA DE MAYÚSCULA
+No se estima: se mide en píxeles sobre el JPEG entregado, usando un
+glifo de referencia plano arriba y abajo (`F`, `E`, `M`). No sirven la
+`Q` (su cola desciende bajo la línea base) ni la `i` (su punto sube
+sobre la altura de mayúscula): ambas inflan la medición.
+Para Source Sans 3, altura de mayúscula = 0,6518 × font-size en bold y
+0,6563 en regular.
+
+### DESCRIPCIÓN
+`meta description` y `og:description` son idénticas byte a byte, y hoy
+valen (94 caracteres):
+  "Antes de invertir —riego, maquinaria o packing— ponle números.
+  Primera conversación sin costo."
+Razón: no solapa "IA" con la L2 de la imagen (la IA ya viaja en imagen
+y título) y recupera "packing" para el agro. La CTA arranca en el
+carácter 64, en zona segura: WhatsApp trunca cerca del 100.
+
+### og:image:alt
+  "Fernando Quevedo — Finanzas, inversiones e IA · María Pinto"
+
+### PUBLICACIÓN — CALENTAR EL CDN ANTES DE PROBAR
+WhatsApp cachea la vista previa POR URL PEGADA (no por `og:url`: está
+comprobado en terreno, `?v=2` y `?v=3` se comportaron distinto). Y si
+raspa la imagen cuando el objeto todavía está frío en el CDN de GitHub
+(`x-cache: MISS`) y la descarga no alcanza a completarse, guarda el
+fracaso para esa URL durante días, aunque el archivo esté perfecto.
+Orden correcto tras cada cambio de og-image:
+  1. Desplegar y esperar a que la URL sirva el archivo nuevo.
+  2. Calentar: pedir la imagen dos o tres veces hasta ver `x-cache: HIT`.
+  3. Recién entonces probar con un `?v=N` que nunca se haya usado.
+Una URL que ya falló queda quemada. Para recuperarla: Sharing Debugger
+de Meta (`developers.facebook.com/tools/debug/`, botón "Scrape Again"),
+o esperar a que expire el caché.
 
 ---
 
@@ -252,15 +337,15 @@ Crear un segmento nuevo debe tomar minutos.
   Productos, ambos JPEG calidad 90:
     - `assets/img/tarjeta-mariapinto-1080x1350.jpg` (168,4 KB) — la
       imagen que Fernando comparte por WhatsApp/redes.
-    - `assets/img/og-mariapinto.jpg` (95,9 KB, límite 300 KB) — vista
-      previa del link, conectada al `og:image` de `/mariapinto/` junto
-      con `og:image:width/height/alt`.
-  El og:image NO es un recorte literal de la tarjeta: la tarjeta es
+    - `assets/img/og-mariapinto.jpg` — vista previa del link, conectada
+      al `og:image` de `/mariapinto/` junto con
+      `og:image:width/height/alt`. Su diseño ya NO es el de esta fase:
+      lo rige la SPEC CANÓNICA TARJETA v4, más arriba.
+  El og:image nunca fue un recorte literal de la tarjeta: la tarjeta es
   vertical (1080×1350) y el og:image es horizontal (1200×630), así que
-  una franja del centro habría dejado fuera el nombre o el número.
-  Son los mismos textos reordenados, en
-  `_fuente-img/og-mariapinto.html`. Ambos comandos de regeneración
-  están comentados dentro de cada archivo fuente.
+  una franja del centro habría dejado fuera el nombre o el número. Cada
+  uno tiene su propio archivo fuente en `_fuente-img/`, con el comando
+  de regeneración comentado adentro.
   Color nuevo que aporta la tarjeta y que solo se usa sobre fondo
   oscuro: `#9AA6B2` (gris azulado, 7,0:1 sobre `#051C2C`).
   Se quitó el placeholder de imagen del cuerpo de `/mariapinto/`: el
@@ -343,31 +428,16 @@ Crear un segmento nuevo debe tomar minutos.
   móvil sobre el sitio en vivo: **Performance 99, Accesibilidad 100**
   (la meta era ≥ 90 en ambos). Medido con la tipografía
   auto-hospedada de 28 KB y sin JavaScript.
-- **TARJETA GANCHO (vista previa de WhatsApp) — REDISEÑADA.** Prueba real:
-  la preview mide ~6 cm en el celular y de los 5 niveles de texto que
-  tenía la og-image solo sobrevivían 2. Se reasignó el trabajo por capa:
-  la IMAGEN grita nombre y lugar; el og:title y la og:description dicen
-  el resto en texto del sistema, que WhatsApp siempre dibuja nítido.
-    - `og-mariapinto.jpg` ahora tiene dos niveles: `FERNANDO / QUEVEDO`
-      (altura de mayúscula 124 px) y `María Pinto` (74 px). Fuera: la
-      línea de audiencia, la de credenciales y el botón pintado con el
-      número. 49,8 KB, JPEG calidad 85, baseline.
-    - Geometría medida, no estimada: Source Sans 3 tiene altura de
-      mayúscula = 0,652 × font-size, y con 10% de margen quedan
-      960×504 px útiles. De ahí salen dos hechos que mandan sobre el
-      diseño: "FERNANDO QUEVEDO" en UNA línea tope a 66 px (por eso va
-      partido en dos, donde llega a 124), y el lema completo
-      "Finanzas, inversiones e IA · María Pinto" tope a 37 px — la
-      mitad del piso de legibilidad. Por eso se cortó a "María Pinto".
-      Decisión de Fernando entre tres variantes medidas; las otras dos
-      eran "IA · María Pinto" (74 px) y "Finanzas · María Pinto" (69).
-    - La descripción (meta description y og:description, idénticas)
-      pasó a: "Antes de invertir —riego, maquinaria o IA— ponle números.
-      Primera conversación sin costo." (89 caracteres). Razón: WhatsApp
-      trunca cerca del carácter 100, y la versión anterior gastaba ese
-      espacio repitiendo la categoría en vez de poner la oferta.
-    - REGLA para futuras og-image: nunca menos de 60 px de altura de
-      mayúscula. Si el texto no cabe, se corta contenido; no se achica
-      la letra. Y el JPEG va baseline, nunca progresivo: WhatsApp no
-      dibuja los progresivos.
+- **TARJETA GANCHO — v4 EN PRODUCCIÓN.** La og-image y las metas de
+  descripción se rigen por la **SPEC CANÓNICA TARJETA v4**, más arriba
+  en este documento. Ahí están los tres niveles de texto, la regla de
+  resolución de conflictos, cómo se mide la altura de mayúscula y el
+  procedimiento de publicación. Las specs anteriores (5 niveles y
+  2 niveles) fueron eliminadas: no se parchan, se reemplazan.
+  Origen del rediseño: en prueba real la vista previa mide ~6 cm en el
+  celular, y de los 5 niveles de texto que tenía la primera versión
+  solo sobrevivían 2. Por eso el trabajo se reparte por capa — la
+  imagen dice quién, qué y dónde; el `og:title` y la `og:description`
+  dicen el resto en texto del sistema, que WhatsApp siempre dibuja
+  nítido y escalable.
 - **Fases 4 y 5 — pendientes.**
