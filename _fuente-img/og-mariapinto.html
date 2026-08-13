@@ -85,6 +85,16 @@
   .linea  { font-size: 91px; font-weight: 400; line-height: 91px;
             color: #FFFFFF; white-space: nowrap; }
   .linea + .linea { margin-top: 12px; }
+
+  /* L3 en gris: la jerarquía entre L2 y L3 se resuelve por TONO, no
+     por tamaño ni peso —los tres comparten cap y peso—. El gris solo
+     desenfatiza mientras el contraste medido siga ≥ 7:1.
+     #A8B6C2 mide 8,38:1 sobre #051C2C. No se usa ningún token de
+     base.css porque ninguno sirve: --c-ink-soft (#5A6470) está
+     calibrado contra fondo blanco y sobre este azul cae a 2,89:1, y
+     --c-line (#D5DAE0) es color de líneas divisorias, no de texto.
+     Este gris vive solo sobre fondo oscuro. */
+  .lugar  { color: #A8B6C2; }
 </style>
 </head>
 
@@ -93,7 +103,7 @@
   <div class="barra"></div>
   <div class="nombre">Fernando Quevedo</div>
   <div class="linea">Finanzas, inversiones e IA</div>
-  <div class="linea">María Pinto</div>
+  <div class="linea lugar">María Pinto</div>
 </div>
 </body>
 </html>

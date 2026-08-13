@@ -162,7 +162,7 @@ FASE 2 — Assets (te los entregaré DE A UNO en assets-entrada/;
 al integrar cada uno, avísame y pídeme el siguiente):
   a) Tarjeta-gancho (imagen 1080×1350): conéctala al head de
      /mariapinto/. DEROGADO en cuanto a la og-image: su diseño, peso y
-     medidas los fija la SPEC CANÓNICA TARJETA v4, más arriba. Esta
+     medidas los fija la SPEC CANÓNICA TARJETA v6, más arriba. Esta
      línea se conserva solo como registro del plan original.
   b) CV one-pager PDF (80×160 mm): a /assets/docs/ con el nombre
      "Fernando Quevedo - Asesorias.pdf", conectado al botón de
@@ -196,52 +196,71 @@ Crear un segmento nuevo debe tomar minutos.
 2. Lighthouse móvil ≥ 90 en Performance y Accesibilidad (Lighthouse:
    auditor integrado en Chrome; explícame cómo correrlo una vez).
 3. La vista previa del link en WhatsApp muestra título, descripción
-   e imagen correctos. Ojo: WhatsApp cachea vistas previas — para
-   re-probar tras un cambio, agrega ?v=2 al link.
+   e imagen correctos. El procedimiento para re-probar tras un cambio
+   —calentar el CDN primero, y por qué un ?v=N gastado queda quemado—
+   está en la SPEC CANÓNICA TARJETA v6.
 4. Todo funciona con JavaScript desactivado.
 5. Ninguna página enlaza a otro segmento.
 6. Crear un segmento nuevo = copiar carpeta + editar textos, sin
    tocar CSS.
 
-## SPEC CANÓNICA TARJETA v4
+## SPEC CANÓNICA TARJETA v6
 
-Esta especificación manda sobre `/assets/img/og-mariapinto.jpg` y sobre
-las metas de descripción de `/mariapinto/`. REEMPLAZA ÍNTEGRAMENTE toda
-instrucción anterior sobre la og-image (incluida la v3 de 2 niveles y el
-string de descripción de 89 caracteres, ambos ya eliminados de este
-documento). Todo cambio futuro reemplaza esta spec completa — nunca la
-parcha.
+Esta especificación manda sobre `/assets/img/og-mariapinto.jpg`, sobre
+el `og:title` y sobre las metas de descripción de `/mariapinto/`.
+REEMPLAZA ÍNTEGRAMENTE cualquier spec previa de la tarjeta: la v4 (que
+vivía aquí) y la instrucción de volver a 2 niveles, que queda ANULADA.
+No hubo una v5 escrita en este documento. Todo cambio futuro reemplaza
+esta spec completa — nunca la parcha.
+
+MOTIVO DEL CAMBIO, para que no se deshaga por error:
+  1. La jerarquía entre L2 y L3 se resuelve por TONO, no por tamaño ni
+     por peso. Las dos líneas comparten altura de mayúscula y peso; lo
+     único que las separa es que L3 va en gris.
+  2. La duplicación real nunca estuvo entre la imagen y la descripción,
+     sino entre la imagen y el `og:title`. Por eso el título ya no
+     repite "Finanzas, inversiones e IA · María Pinto" —que es
+     exactamente lo que dice la imagen— y pasa a decir la promesa.
 
 ### LA IMAGEN (/assets/img/og-mariapinto.jpg)
-Lienzo 1200×630 px, JPEG calidad 80-85, peso ≤ 300 KB. Fondo y acento:
-tokens de `/assets/css/base.css` (hoy `#051C2C` y `#2251FF` — si los
-tokens cambian, mandan los tokens). Texto blanco, centrado, barra de
-acento arriba. Sin versalitas, sin letter-spacing, sin degradados, sin
-sombras. JPEG baseline, nunca progresivo: WhatsApp no dibuja los
-progresivos.
+Lienzo 1200×630 px, JPEG calidad 80-85, peso ≤ 300 KB, baseline nunca
+progresivo (WhatsApp no dibuja los progresivos). Fondo `#051C2C` y
+barra de acento `#2251FF`, tokens de `/assets/css/base.css`; si los
+tokens cambian, mandan los tokens. Sin versalitas, sin letter-spacing,
+sin degradados, sin sombras.
 
-TRES niveles de texto, en este orden:
-  L1: Fernando Quevedo — CAJA MIXTA (no todo mayúsculas), bold,
-      UNA sola línea, sin quiebre. Altura de mayúscula 81 px.
-  L2: Finanzas, inversiones e IA — altura de mayúscula 60-62 px.
-  L3: María Pinto — altura de mayúscula 60-62 px.
-Márgenes: laterales ≥ 80 px en las tres líneas; verticales ≥ 63 px;
-el aire sobrante se distribuye alrededor del bloque.
+TRES niveles de texto, en este orden, una línea cada uno:
+  L1: Fernando Quevedo — caja mixta, bold 700, BLANCO, cap 81 px.
+  L2: Finanzas, inversiones e IA — regular 400, BLANCO, cap 60-62 px.
+  L3: María Pinto — regular 400, GRIS `#A8B6C2`, cap 60-62 px.
+Márgenes: laterales ≥ 80 px en las tres líneas; verticales ≥ 63 px; el
+aire sobrante se distribuye alrededor del bloque.
 
-POR QUÉ L1 MIDE 81 px Y NO 92-100. La v4 se especificó pidiendo 92-100
-px para L1, y es geométricamente imposible: "Fernando Quevedo" en caja
-mixta bold ocupa 8,346 em, así que a 92 px de altura de mayúscula
-(font-size 141,2) mediría 1178 px — 138 px más que los 1040 disponibles
-con márgenes de 80. El máximo real es 81 px en bold (85 px en regular).
-Con L1 a 81 y L2 en su piso de 60, el ratio de jerarquía queda en 1,350
-y no en el 1,4 que pedía la spec; para llegar a 1,4 habría que bajar L2
-a 58, bajo su propio piso. Enmienda decidida por Fernando: se conservan
-el bold, la línea única, los márgenes y el piso de 60, y se acepta el
-ratio 1,350. Razón: la jerarquía la construye el peso tanto como el
-tamaño, y la única variante que subía el ratio (L1 y L2 en el mismo
-peso regular) hacía ver el nombre MENOS dominante, no más.
+EL GRIS DE L3 — `#A8B6C2`, contraste 8,38:1 sobre `#051C2C` por
+fórmula y 8,64:1 medido sobre el JPEG entregado. Piso: 7:1.
+No manda ningún token de `base.css` porque ninguno sirve sobre fondo
+oscuro: `--c-ink-soft` (#5A6470) está calibrado contra blanco y aquí
+cae a 2,89:1, y `--c-line` (#D5DAE0) pasa el número (12,35:1) pero es
+color de líneas divisorias, no de texto, y a esa altura casi no
+desenfatiza. Este gris existe solo sobre fondo oscuro. Ojo: el proyecto
+ya tenía otro gris para fondo oscuro, `#9AA6B2` (7,01:1), usado en la
+tarjeta 1080×1350; se conservó ahí y NO se unificó. Si algún día se
+unifican, gana `#A8B6C2` por margen de contraste.
 
-### REGLA DE RESOLUCIÓN DE CONFLICTOS (permanente)
+POR QUÉ L1 MIDE 81 px. "Fernando Quevedo" en caja mixta bold ocupa
+8,346 em; a 92 px de altura de mayúscula mediría 1178 px de ancho
+contra los 1040 disponibles con márgenes de 80. El máximo real es
+81 px en bold. Con L1 a 81 y L2 en su piso de 60 el ratio de tamaño
+queda en 1,350. Se acepta: la jerarquía la construyen tamaño, peso y
+tono juntos, y la única variante que subía el ratio dejaba nombre y
+lema en el mismo peso, con el nombre menos dominante.
+
+### REGLAS PERMANENTES
+JERARQUÍA. Se construye por tamaño, peso Y tono. El tono solo
+desenfatiza mientras el contraste medido se mantenga ≥ 7:1; nunca por
+debajo.
+
+RESOLUCIÓN DE CONFLICTOS.
 1. Si un texto no cabe: primero se corta contenido.
 2. Si el contenido es atómico (un nombre propio): se reduce tamaño,
    nunca bajo 60 px de altura de mayúscula.
@@ -250,28 +269,36 @@ peso regular) hacía ver el nombre MENOS dominante, no más.
    medidas al píxel. No inventes contenido.
 Aplicación conocida: L2 entra al ras — mide 954 px de los 1040
 disponibles y su altura de mayúscula máxima es 64,5 px. No hay espacio
-para alargarla. Nunca se comprime el tracking ni se achica por debajo
-de los pisos.
+para alargarla. Nunca se comprime el tracking ni se achica bajo el piso.
 
-### CÓMO SE MIDE LA ALTURA DE MAYÚSCULA
-No se estima: se mide en píxeles sobre el JPEG entregado, usando un
-glifo de referencia plano arriba y abajo (`F`, `E`, `M`). No sirven la
-`Q` (su cola desciende bajo la línea base) ni la `i` (su punto sube
-sobre la altura de mayúscula): ambas inflan la medición.
-Para Source Sans 3, altura de mayúscula = 0,6518 × font-size en bold y
-0,6563 en regular.
+### CÓMO SE MIDE
+ALTURA DE MAYÚSCULA. No se estima: se mide en píxeles sobre el JPEG
+entregado, con un glifo de referencia plano arriba y abajo (`F`, `E`,
+`M`). No sirven la `Q` (su cola desciende bajo la línea base) ni la `i`
+(su punto sube sobre la altura de mayúscula). El umbral para separar
+glifo de fondo es el punto medio de luminancia entre el fondo y el
+color declarado de esa línea; con un umbral fijo, una línea gris y una
+blanca no son comparables. Para Source Sans 3, altura de mayúscula =
+0,6518 × font-size en bold y 0,6563 en regular.
+CONTRASTE. Fórmula WCAG sobre el núcleo del trazo, no sobre los bordes
+suavizados: se ordenan los píxeles de la línea por luminancia y se toma
+el percentil 85.
 
-### DESCRIPCIÓN
-`meta description` y `og:description` son idénticas byte a byte, y hoy
-valen (94 caracteres):
-  "Antes de invertir —riego, maquinaria o packing— ponle números.
+### TEXTOS
+`og:title` (no repite lo que ya dice la imagen):
+  "Fernando Quevedo — antes de invertir, ponle números"
+`meta description` y `og:description`, idénticas byte a byte
+(96 caracteres):
+  "Riego, maquinaria, packing o el proyecto que tengas entre manos.
   Primera conversación sin costo."
-Razón: no solapa "IA" con la L2 de la imagen (la IA ya viaja en imagen
-y título) y recupera "packing" para el agro. La CTA arranca en el
-carácter 64, en zona segura: WhatsApp trunca cerca del 100.
-
-### og:image:alt
+`og:image:alt` (describe la imagen, por eso sí conserva la fórmula
+larga, para lectores de pantalla):
   "Fernando Quevedo — Finanzas, inversiones e IA · María Pinto"
+NOTA: el `<title>` del HTML NO se tocó y sigue diciendo "Fernando
+Quevedo — Finanzas, inversiones e IA · María Pinto". Es deliberado
+—esta spec solo levantó el bloqueo sobre `og:title`— pero queda
+divergente: el título de la pestaña y el de la vista previa ya no
+coinciden. Decidir en una próxima pasada.
 
 ### PUBLICACIÓN — CALENTAR EL CDN ANTES DE PROBAR
 WhatsApp cachea la vista previa POR URL PEGADA (no por `og:url`: está
@@ -340,7 +367,7 @@ o esperar a que expire el caché.
     - `assets/img/og-mariapinto.jpg` — vista previa del link, conectada
       al `og:image` de `/mariapinto/` junto con
       `og:image:width/height/alt`. Su diseño ya NO es el de esta fase:
-      lo rige la SPEC CANÓNICA TARJETA v4, más arriba.
+      lo rige la SPEC CANÓNICA TARJETA v6, más arriba.
   El og:image nunca fue un recorte literal de la tarjeta: la tarjeta es
   vertical (1080×1350) y el og:image es horizontal (1200×630), así que
   una franja del centro habría dejado fuera el nombre o el número. Cada
@@ -428,8 +455,8 @@ o esperar a que expire el caché.
   móvil sobre el sitio en vivo: **Performance 99, Accesibilidad 100**
   (la meta era ≥ 90 en ambos). Medido con la tipografía
   auto-hospedada de 28 KB y sin JavaScript.
-- **TARJETA GANCHO — v4 EN PRODUCCIÓN.** La og-image y las metas de
-  descripción se rigen por la **SPEC CANÓNICA TARJETA v4**, más arriba
+- **TARJETA GANCHO — v6 EN PRODUCCIÓN.** La og-image y las metas de
+  descripción se rigen por la **SPEC CANÓNICA TARJETA v6**, más arriba
   en este documento. Ahí están los tres niveles de texto, la regla de
   resolución de conflictos, cómo se mide la altura de mayúscula y el
   procedimiento de publicación. Las specs anteriores (5 niveles y
