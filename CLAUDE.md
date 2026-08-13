@@ -313,6 +313,12 @@ Orden correcto tras cada cambio de og-image:
   1. Desplegar y esperar a que la URL sirva el archivo nuevo.
   2. Calentar: pedir la imagen dos o tres veces hasta ver `x-cache: HIT`.
   3. Recién entonces probar con un `?v=N` que nunca se haya usado.
+OJO CON LA VENTANA: GitHub Pages sirve con `cache-control: max-age=600`,
+así que el borde del CDN se enfría a los 10 MINUTOS sin tráfico y vuelve
+a `x-cache: MISS`. El calentamiento no se hace "después de desplegar":
+se hace INMEDIATAMENTE ANTES de la prueba. Si pasó más de un rato entre
+una cosa y la otra, se calienta de nuevo. Comprobado: tras el despliegue
+la imagen estaba caliente, y 10 minutos después ya marcaba MISS.
 Una URL que ya falló queda quemada. Para recuperarla: Sharing Debugger
 de Meta (`developers.facebook.com/tools/debug/`, botón "Scrape Again"),
 o esperar a que expire el caché.
