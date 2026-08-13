@@ -285,8 +285,11 @@ suavizados: se ordenan los píxeles de la línea por luminancia y se toma
 el percentil 85.
 
 ### TEXTOS
-`og:title` (no repite lo que ya dice la imagen):
-  "Fernando Quevedo — antes de invertir, ponle números"
+`og:title` — no repite NADA de lo que ya dice la imagen, ni siquiera el
+nombre: la imagen ya lo grita en la línea más grande, y el título es el
+único renglón que WhatsApp dibuja en negrita. Se gasta entero en la
+promesa:
+  "Antes de invertir, ponle números"
 `meta description` y `og:description`, idénticas byte a byte
 (96 caracteres):
   "Riego, maquinaria, packing o el proyecto que tengas entre manos.
