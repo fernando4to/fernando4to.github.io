@@ -117,7 +117,7 @@ configura WhatsApp Business; se administra a mano.
     dueños, equipos y organizaciones.
 
   RESULTADOS
-  • $790 millones (CLP) en ventas acumuladas — empresa de tecnología
+  • $790 millones en ventas acumuladas — empresa de tecnología
     educativa que fundé y dirigí durante 7 años, con un equipo de
     37 personas (2016–2023).
   • De 50 a 200 colegios en 6 meses — piloto nacional con el
@@ -460,6 +460,17 @@ o esperar a que expire el caché.
   español, y el camel case lo haría leer como nombre propio (el nombre
   de la empresa es Adaptativamente). El término es una palanca de
   calibración por segmento, no una regla global.
+- **CONVENCIÓN DE TÉRMINOS — MONEDA.** Decisión de Fernando: las cifras
+  en pesos van SIN la sigla, `$790 millones`, nunca `$790 millones
+  (CLP)`. Razón: el público es chileno, Fernando es chileno y el
+  dominio será chileno; la unidad se subentiende y la sigla solo mete
+  ruido de informe financiero. Aplica a TODOS los assets —landings,
+  imágenes, PDF— y a los segmentos futuros. Al aplicarla se comprobó
+  que el PDF de descarga ya venía correcto (dice "$790 millones" y
+  "$309 millones", sin sigla): la landing era la única desalineada, y
+  la copy canónica de más arriba en este documento ya está corregida.
+  Si algún día hay que desambiguar por audiencia extranjera, se escribe
+  el nombre de la moneda en palabras, no la sigla ISO.
 - **CRITERIO DE ACEPTACIÓN 2 — CUMPLIDO.** Fernando corrió Lighthouse
   móvil sobre el sitio en vivo: **Performance 99, Accesibilidad 100**
   (la meta era ≥ 90 en ambos). Medido con la tipografía
