@@ -646,13 +646,22 @@ se confía en el `padding` declarado, que el contenido puede desbordar.
   viñetas dibujadas en CSS, cero imágenes en el cuerpo y por tanto cero
   deuda de texto alternativo, y tamaño carta en el PDF (el correcto
   para Chile, no A4).
-- **SEGMENTO `/clases/` — CONSTRUIDO, SIN PUBLICAR.** Docencia
+- **SEGMENTO `/clases/` — EN PRODUCCIÓN.** Docencia
   universitaria, dirigido a la UANDES (ramo Emprendimiento e Innovación,
   9º de Ingeniería Comercial). CTA por WhatsApp, igual que el resto;
   texto prellenado "(Docencia)". CSS sin tocar una línea — el criterio
   de aceptación 6 se sostiene.
-  Copy redactada por Claude sobre material verificable y pendiente del
-  visto bueno de Fernando. Fuentes: el borrador de CV docente que dejó
+  Copy redactada por Claude sobre material verificable, revisada y
+  aprobada por Fernando, que recortó el detalle de método del venture,
+  el caso de la liquidación y el bullet sobre decisiones bajo
+  incertidumbre ("forzado, de más").
+  LEMA UNIFICADO del segmento, igual que en /mariapinto/: "Emprendimiento
+  e innovación — fundé, escalé y cerré una empresa; hoy construyo la
+  siguiente", en la landing y en el encabezado del PDF. La tarjeta usa su
+  recorte legítimo (Emprendimiento / Docencia universitaria) y el PDF
+  conserva una línea `Áreas:` aparte, que hace de casilla de
+  clasificación: un CV se compara contra otros CV, y esa función una
+  frase de venta no la cumple. Fuentes: el borrador de CV docente que dejó
   en `assets-entrada/`, más sus proyectos `~/venture-mudanza` y
   `~/liquidacion-cardales`.
   PRIVACIDAD — ESOS DOS REPOS SON PRIVADOS y contienen nombres de
@@ -672,6 +681,9 @@ se confía en el `padding` declarado, que el contenido puede desbordar.
   el dato se OMITE en todos los assets hasta que Fernando lo resuelva.
   El acumulado sí calza y se usa: USD 1M ≈ $790 millones. El inicio de
   la empresa quedó resuelto: **2016**.
-  PENDIENTE ANTES DE PUBLICAR: visto bueno de la copy, y calentar el CDN
-  de `og-clases.jpg` antes de compartir el link por WhatsApp.
+  MÁRGENES DEL PDF DOCENTE: laterales de 33 mm, no 18. Con 18 la medida
+  de línea daba 87 caracteres —muy por sobre el óptimo de 45-75— y a la
+  vez sobraban 40 mm de papel abajo. Angostar la columna arregló los dos
+  defectos de una vez: el texto se reparte en más líneas y esas líneas
+  se comen el vacío. Quedó en 73 caracteres y 8,9 mm de margen inferior.
 - **Fase 5 — pendiente.**
