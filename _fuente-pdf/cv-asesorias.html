@@ -10,26 +10,68 @@
   El CV vive en Claude Design como "CV v2 Orientado al publico.dc.html".
   Ese archivo no se puede imprimir directamente: necesita React y un
   componente <doc-page> que solo existen dentro de la app de Claude
-  Design. Pero su contenido es 100% estático (no tiene lógica ni
-  variables), así que aquí está reproducido tal cual —mismos textos,
-  colores, tamaños y medidas en milímetros— en HTML plano que Chrome
-  puede imprimir sin depender de nada.
+  Design. Pero su contenido es 100% estático, así que aquí está
+  reproducido en HTML plano que Chrome puede imprimir sin depender de
+  nada.
 
-  Cómo se regenera el PDF (un solo comando):
+  UNIFICADO CON EL SITIO (auditoría de agosto 2026). Antes este
+  documento era, de hecho, otra marca: Helvetica contra la Source Sans 3
+  del sitio, otro lema, y otros nombres de sección. Quien venía de la
+  landing y descargaba el CV recibía un documento que parecía de otra
+  persona, justo en el momento de mayor intención. Se alinearon:
+    - Tipografía: Source Sans 3, la misma del sitio, auto-hospedada.
+    - Lema: el mismo de la landing y de la tarjeta de WhatsApp.
+    - Nombres de sección: Qué resuelvo · Resultados · Trayectoria ·
+      Formación (antes: En qué puedo aportar · Resultados seleccionados
+      · Experiencia · Educación).
+    - Viñetas: cuadrado azul dibujado en CSS. OJO, no volver al glifo
+      "▪": ese carácter NO viene en el subconjunto latino de Source
+      Sans 3 y el navegador lo sustituiría por otra fuente.
+
+  Cómo se regenera el PDF (un solo comando, desde la raíz del repo):
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
       --headless --disable-gpu --no-pdf-header-footer \
       --print-to-pdf="assets/docs/Fernando Quevedo - Asesorias.pdf" \
       "_fuente-pdf/cv-asesorias.html"
+
+  Tras regenerar, VERIFICAR EL MARGEN INFERIOR. El contenido cabe
+  justo, y `.page` tiene overflow:hidden, así que si algo crece la
+  última línea se recorta EN SILENCIO — no salta a una página 2 ni
+  avisa. El mínimo seguro es 8 mm: casi ninguna impresora de oficina
+  imprime dentro de los ~5 mm del borde del papel.
 
   La carpeta empieza con "_" a propósito: GitHub Pages ignora las
   carpetas que parten con guion bajo, así que este archivo queda en el
   repo (para poder regenerar el PDF) pero NO se publica en el sitio.
 -->
 <style>
-  /* size: letter = el tamaño del documento original (doc-page size="letter").
-     margin: 0 porque los márgenes visuales van en el padding de .page,
-     igual que en el diseño original; así Chrome tampoco dibuja su
-     encabezado con la fecha y la URL. */
+  /* La misma tipografía del sitio, pero en DOS INSTANCIAS ESTÁTICAS
+     (400 y 700) en vez del archivo variable que usa la web.
+
+     Por qué: al imprimir con la fuente variable, Chrome la embebe en el
+     PDF como fuente Type 3 —glifos procedurales, uno por uno— y el
+     archivo pasó de 82 a 143 KB, un 74% más, en un proyecto con
+     presupuesto de datos móviles. Con instancias estáticas la embebe
+     como CID TrueType, que es lo correcto y pesa menos.
+     Los .ttf se generaron desde el mismo woff2 del sitio con fontTools:
+       instancer.instantiateVariableFont(fuente, {"wght": 400 | 700})
+     Viven en esta carpeta (con "_" inicial) así que NO se publican. */
+  @font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 400;
+    src: url("ss3-regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 700;
+    src: url("ss3-bold.ttf") format("truetype");
+  }
+
+  /* size: letter = el tamaño correcto para Chile (aquí se usa carta,
+     no A4). margin: 0 porque los márgenes visuales van en el padding
+     de .page; así Chrome tampoco dibuja su encabezado con fecha y URL. */
   @page { size: letter; margin: 0; }
 
   html, body { margin: 0; padding: 0; background: #FFFFFF; }
@@ -43,8 +85,10 @@
     width: 8.5in;
     height: 11in;
     overflow: hidden;
-    padding: 11mm 18mm;
-    font-family: Helvetica, Arial, sans-serif;
+    /* 11 mm arriba, 18 mm a los lados, 9 mm abajo. El de abajo es un
+       piso, no un objetivo: el contenido termina antes. */
+    padding: 11mm 18mm 9mm;
+    font-family: "Source Sans 3", Helvetica, Arial, sans-serif;
     color: #1A1D21;
     font-size: 10pt;
     line-height: 1.3;
@@ -55,49 +99,59 @@
   h1 { margin: 0; }
   p  { margin: 0; }
 
-  /* Barra azul de marca: 34 × 3 px, igual que el original */
+  /* Barra azul de marca */
   .barra { width: 34px; height: 3px; background: #2251FF; margin-bottom: 2.2mm; }
 
   .nombre {
     font-size: 22pt;
     font-weight: 700;
+    /* Tracking positivo: las mayúsculas se dibujan con prosa lateral
+       pensada para convivir con minúsculas, así que en caja alta hay
+       que abrirlas. */
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: #051C2C;
     line-height: 1.1;
   }
 
+  /* El lema: el mismo de la landing y de la tarjeta de WhatsApp. */
   .titulo-cargo {
     font-size: 10.5pt;
     font-weight: 700;
-    color: #1A1D21;
+    color: #051C2C;
+    line-height: 1.25;
     margin-top: 1.6mm;
+    max-width: 165mm;
   }
 
+  /* 10pt y tinta plena: esta línea carga la información más accionable
+     del documento y antes iba a 9pt en gris, el cuerpo más chico de la
+     página. */
   .linea-contacto {
-    font-size: 9pt;
-    color: #5A6470;
-    margin-top: 1.2mm;
+    font-size: 10pt;
+    color: #1A1D21;
+    margin-top: 1.4mm;
   }
-  /* Cada dato es indivisible. Sin esto, cuando la línea no cabe, el
-     navegador la corta por el primer guion que encuentra y parte la URL
-     de LinkedIn en "…fernando-quevedo-" / "callejas", dejando una
-     palabra huérfana en la segunda línea. Con nowrap, si algo no cabe
-     baja entero y el quiebre ocurre en un separador "·". */
-  .linea-contacto a { color: #5A6470; white-space: nowrap; }
+  /* Cada dato es indivisible: si algo no cabe baja entero y el quiebre
+     ocurre en un separador "·", nunca dentro de una dirección. */
+  .linea-contacto a { color: #1A1D21; white-space: nowrap; }
 
-  .seccion { margin-top: 3.2mm; }
-  .seccion--primera { margin-top: 3.4mm; }
+  .seccion { margin-top: 3.0mm; }
+  .seccion--primera { margin-top: 3.2mm; }
 
   .titulo-seccion {
     font-size: 9pt;
     font-weight: 700;
-    letter-spacing: 0.15em;
+    /* 0.08em, no 0.15em. El tracking en versalitas debe escalar al
+       revés que el cuerpo: a 9pt hace falta más apertura que en los
+       22px del sitio (que llevan 0.03em), pero 0.15em separaba tanto
+       que las palabras dejaban de leerse como unidades. */
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #051C2C;
   }
   /* La regla fina bajo cada título de sección */
-  .regla { border-top: 0.7pt solid #051C2C; margin: 1.1mm 0 1.6mm; }
+  .regla { border-top: 0.7pt solid #051C2C; margin: 1.0mm 0 1.5mm; }
 
   /* Lista de viñetas: rejilla de dos columnas (viñeta | texto), para
      que el texto de varias líneas quede alineado y no se meta debajo
@@ -106,9 +160,15 @@
     display: grid;
     grid-template-columns: auto 1fr;
     column-gap: 2.4mm;
-    row-gap: 1.4mm;
+    row-gap: 1.3mm;
   }
-  .vineta { color: #2251FF; font-size: 7pt; line-height: 1.85; }
+  /* Cuadrado azul dibujado en CSS, igual que en el sitio. */
+  .vineta {
+    width: 1.5mm;
+    height: 1.5mm;
+    background: #2251FF;
+    margin-top: 1.5mm;   /* alineado con la primera línea de texto */
+  }
 
   /* Cargo + fechas en una línea, las fechas pegadas a la derecha */
   .fila-cargo {
@@ -117,13 +177,13 @@
     align-items: baseline;
     gap: 4mm;
   }
-  .fila-cargo--siguiente { margin-top: 2.2mm; }
+  .fila-cargo--siguiente { margin-top: 2.0mm; }
   .fila-cargo strong { color: #1A1D21; }
   .fechas { font-size: 9pt; color: #5A6470; white-space: nowrap; }
 
   .parrafo-cargo { margin-top: 0.6mm; text-wrap: pretty; }
 
-  .pie { margin: 3.2mm 0 0.5mm; }
+  .pie { margin: 3.0mm 0 0; }
 
   p, li { text-wrap: pretty; }
 </style>
@@ -134,12 +194,12 @@
 
   <div class="barra"></div>
   <h1 class="nombre">Fernando Quevedo</h1>
-  <div class="titulo-cargo">Economista y empresario · Asesoría estratégica y financiera · María Pinto</div>
+  <div class="titulo-cargo">Finanzas, inversiones e IA para empresas y sector público — con foco en el agro de María Pinto</div>
   <div class="linea-contacto">
     María Pinto, Región Metropolitana ·
     <a href="https://wa.me/56967789324">+56 9 6778 9324</a> ·
     <a href="mailto:fernando@fernandoquevedo.cl">fernando@fernandoquevedo.cl</a> ·
-    <a href="https://www.linkedin.com/in/fernando-quevedo-callejas/">linkedin.com/in/fernando-quevedo-callejas</a>
+    <a href="https://www.linkedin.com/in/fernando-quevedo-callejas/">in/fernando-quevedo-callejas</a>
   </div>
 
   <div class="seccion seccion--primera">
@@ -149,28 +209,28 @@
   </div>
 
   <div class="seccion">
-    <div class="titulo-seccion">En qué puedo aportar</div>
+    <div class="titulo-seccion">Qué resuelvo</div>
     <div class="regla"></div>
     <div class="vinetas">
-      <span class="vineta">▪</span><p><strong>Presupuestos, proyecciones y evaluación de inversiones</strong> (riego, maquinaria, packing)</p>
-      <span class="vineta">▪</span><p><strong>Inteligencia artificial con criterio</strong>: en qué conviene invertir, en qué no, y por dónde partir (diagnóstico y hoja de ruta)</p>
-      <span class="vineta">▪</span><p><strong>Ventas y proyectos con el Estado</strong> (Mercado Público y licitaciones)</p>
-      <span class="vineta">▪</span><p><strong>Formación en finanzas y emprendimiento</strong> (docencia universitaria)</p>
+      <span class="vineta"></span><p><strong>Presupuestos, proyecciones y evaluación de inversiones</strong> (riego, maquinaria, packing)</p>
+      <span class="vineta"></span><p><strong>Inteligencia artificial con criterio</strong>: en qué conviene invertir, en qué no, y por dónde partir (diagnóstico y hoja de ruta)</p>
+      <span class="vineta"></span><p><strong>Ventas y proyectos con el Estado</strong> (Mercado Público y licitaciones)</p>
+      <span class="vineta"></span><p><strong>Formación en finanzas y emprendimiento</strong> (docencia universitaria)</p>
     </div>
   </div>
 
   <div class="seccion">
-    <div class="titulo-seccion">Resultados seleccionados</div>
+    <div class="titulo-seccion">Resultados</div>
     <div class="regla"></div>
     <div class="vinetas">
-      <span class="vineta">▪</span><p><strong>Construí una empresa desde cero hasta cerca de $790 millones en ventas acumuladas</strong> y un equipo de hasta 37 personas (Adaptativamente, 2016–2023); la conduje a través de la crisis social de 2019 y la pandemia hasta un cierre ordenado, con todas las indemnizaciones y finiquitos pagados.</p>
-      <span class="vineta">▪</span><p><strong>Conseguí y ejecuté un piloto nacional gratuito con el Ministerio de Educación</strong> que partió en 50 colegios y alcanzó cerca de 200: 450.000 ejercicios entregados en 6 meses, con reportes a autoridades y sostenedores.</p>
-      <span class="vineta">▪</span><p><strong>Finanzas aplicadas a decisiones reales</strong>: presupuestos y proyecciones, indicadores de gestión, cálculo del valor de empresas y proyectos, y fijación de precios. Siete años de práctica en mi propia empresa.</p>
+      <span class="vineta"></span><p><strong>Construí una empresa desde cero hasta cerca de $790 millones en ventas acumuladas</strong> y un equipo de hasta 37 personas (Adaptativamente, 2016–2023); la conduje a través de la crisis social de 2019 y la pandemia hasta un cierre ordenado, con todas las indemnizaciones y finiquitos pagados.</p>
+      <span class="vineta"></span><p><strong>Conseguí y ejecuté un piloto nacional gratuito con el Ministerio de Educación</strong> que partió en 50 colegios y alcanzó cerca de 200: 450.000 ejercicios entregados en 6 meses, con reportes a autoridades y sostenedores.</p>
+      <span class="vineta"></span><p><strong>Finanzas aplicadas a decisiones reales</strong>: presupuestos y proyecciones, indicadores de gestión, cálculo del valor de empresas y proyectos, y fijación de precios. Siete años de práctica en mi propia empresa.</p>
     </div>
   </div>
 
   <div class="seccion">
-    <div class="titulo-seccion">Experiencia</div>
+    <div class="titulo-seccion">Trayectoria</div>
     <div class="regla"></div>
 
     <div class="fila-cargo">
@@ -190,13 +250,13 @@
   </div>
 
   <div class="seccion">
-    <div class="titulo-seccion">Educación</div>
+    <div class="titulo-seccion">Formación</div>
     <div class="regla"></div>
     <div class="vinetas">
-      <span class="vineta">▪</span><p><strong>MBA Ejecutivo</strong>, IAE Business School – Universidad Austral, Argentina (2025). Proyecto final: diseño y validación de mercado de un emprendimiento de tecnología en salud.</p>
-      <span class="vineta">▪</span><p style="text-wrap:balance"><strong>Magíster en Economía, mención Políticas Públicas, e Ingeniería Comercial</strong>, Pontificia Universidad Católica de Chile.</p>
-      <span class="vineta">▪</span><p><strong>Posgrados en Economía en Europa</strong>: Máster de investigación, Universidad de Tilburg (Países Bajos); investigación doctoral, Universidad de Viena (Austria).</p>
-      <span class="vineta">▪</span><p><strong>Certificado en Estrategia de Inteligencia Artificial</strong>, Kellogg School of Management (2025).</p>
+      <span class="vineta"></span><p><strong>MBA Ejecutivo</strong>, IAE Business School – Universidad Austral, Argentina (2025). Proyecto final: diseño y validación de mercado de un emprendimiento de tecnología en salud.</p>
+      <span class="vineta"></span><p style="text-wrap:balance"><strong>Magíster en Economía, mención Políticas Públicas, e Ingeniería Comercial</strong>, Pontificia Universidad Católica de Chile.</p>
+      <span class="vineta"></span><p><strong>Posgrados en Economía en Europa</strong>: Máster de investigación, Universidad de Tilburg (Países Bajos); investigación doctoral, Universidad de Viena (Austria).</p>
+      <span class="vineta"></span><p><strong>Certificado en Estrategia de Inteligencia Artificial</strong>, Kellogg School of Management (2025).</p>
     </div>
   </div>
 

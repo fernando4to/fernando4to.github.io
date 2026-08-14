@@ -55,7 +55,7 @@
   <!-- 2. Qué resuelvo -->
   <section>
     <h2 class="titulo-seccion">Qué resuelvo</h2>
-    <ul class="lista">
+    <ul class="lista" role="list">
       <li><strong>¿Conviene esta inversión?</strong> — Evaluación con
         números: riego, maquinaria, packing.</li>
       <li><strong>Finanzas para decidir</strong> — presupuestos,
@@ -73,7 +73,7 @@
   <!-- 3. Resultados -->
   <section>
     <h2 class="titulo-seccion">Resultados</h2>
-    <ul class="lista">
+    <ul class="lista" role="list">
       <li><strong>$790 millones en ventas acumuladas</strong> —
         empresa de tecnología educativa que fundé y dirigí durante
         7 años, con un equipo de 37 personas (2016–2023).</li>
@@ -89,7 +89,7 @@
   <!-- 4. Trayectoria -->
   <section>
     <h2 class="titulo-seccion">Trayectoria</h2>
-    <ul class="lista">
+    <ul class="lista" role="list">
       <li><strong>2026–hoy</strong> · Director y accionista, Terco SpA
         — constructora de pinturas y terminaciones, 170 trabajadores;
         diseñé su expansión a vivienda con subsidio (DS 19 / DS 49).</li>
@@ -105,7 +105,7 @@
   <!-- 5. Formación -->
   <section>
     <h2 class="titulo-seccion">Formación</h2>
-    <ul class="lista">
+    <ul class="lista" role="list">
       <li><strong>Magíster en Economía (Políticas Públicas) e Ingeniería
         Comercial</strong>, U. Católica de Chile.</li>
       <li><strong>Posgrados en Economía en Europa</strong>: Máster de
@@ -134,16 +134,32 @@
     <a class="boton boton--secundario"
        href="/assets/docs/Fernando%20Quevedo%20-%20Asesorias.pdf"
        download>
-      Descargar PDF (una página)
+      Descargar PDF (una página · 33 KB)
     </a>
 
-    <p class="contacto">
-      <span class="etiqueta">WhatsApp</span>
-      <span class="dato">+56 9 6778 9324</span><br>
-      <span class="etiqueta">Correo</span>
-      <span class="dato">fernando@fernandoquevedo.cl</span><br>
-      <a href="https://www.linkedin.com/in/fernando-quevedo-callejas/">in/fernando-quevedo-callejas</a>
-    </p>
+    <!-- Lista de definiciones: cada dato es un par etiqueta/valor, y el
+         lector de pantalla los entrega como pares. Antes iban separados
+         por <br> dentro de un <p> y se leían de corrido, como una sola
+         frase sin pausas.
+         El texto sigue completo y visible para copiarlo o marcarlo a
+         mano —esa era la razón original de dejarlo plano—, pero además
+         ahora es enlace. El visor de WhatsApp en Android no siempre
+         AUTODETECTA texto plano; un <a href="tel:"> explícito sí
+         funciona, así que no había nada que ganar dejándolo inerte. -->
+    <dl class="contacto">
+      <dt class="etiqueta">WhatsApp</dt>
+      <dd class="dato"><a href="tel:+56967789324">+56 9 6778 9324</a></dd>
+
+      <dt class="etiqueta">Correo</dt>
+      <dd class="dato"><a href="mailto:fernando@fernandoquevedo.cl">fernando@fernandoquevedo.cl</a></dd>
+
+      <!-- aria-label da contexto a quien navega saltando de enlace en
+           enlace y solo oiría el fragmento de URL. Incluye el texto
+           visible dentro del rótulo, como exige la WCAG 2.5.3. -->
+      <dt class="etiqueta">LinkedIn</dt>
+      <dd class="dato"><a href="https://www.linkedin.com/in/fernando-quevedo-callejas/"
+         aria-label="LinkedIn: in/fernando-quevedo-callejas">in/fernando-quevedo-callejas</a></dd>
+    </dl>
   </section>
 
 </main>

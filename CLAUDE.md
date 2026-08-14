@@ -323,6 +323,69 @@ Una URL que ya falló queda quemada. Para recuperarla: Sharing Debugger
 de Meta (`developers.facebook.com/tools/debug/`, botón "Scrape Again"),
 o esperar a que expire el caché.
 
+## REGLAS DE ACCESIBILIDAD Y TIPOGRAFÍA
+
+Salen de la auditoría de agosto 2026 (tipografía + UX/UI + a11y) sobre
+`/mariapinto/` y el PDF. Son las que un segmento nuevo debe heredar al
+copiar la carpeta, y las que no hay que "corregir" sin leer el porqué.
+
+**El azul `--c-accent` significa una sola cosa: esto se puede tocar.**
+Las etiquetas del bloque de contacto iban en ese azul y en negrita sin
+ser enlaces. La gente tocaba "WhatsApp" y no pasaba nada — un fallo
+silencioso, sin mensaje de error, que se lee como "la página está mala".
+Nada que no sea enlace lleva ese color.
+
+**Teléfono y correo van enlazados, con el texto completo a la vista.**
+La razón que había para dejarlos inertes —que el visor de WhatsApp en
+Android no siempre los activa— confundía dos cosas: lo que ese visor no
+hace de forma confiable es AUTODETECTAR texto plano; un `<a href="tel:">`
+explícito funciona en todos lados. Se estaba pagando el costo sin
+recibir el beneficio, y el costo caía sobre quien no puede transcribir
+nueve dígitos a mano.
+
+**Toda `<ul>` con `list-style: none` lleva `role="list"`.** Safari
+retira el rol de lista cuando se le quita el marcador, así que VoiceOver
+—o sea, la mitad de los celulares de Chile— entrega los ítems como un
+párrafo corrido, sin conteo ni límites entre ellos.
+
+**El bloque de contacto es un `<dl>`, no `<br>`.** Son pares
+etiqueta/valor; con `<br>` el lector de pantalla los lee de corrido.
+
+**El anillo de foco va en `--c-deep`, nunca en `--c-accent`.** El botón
+primario ES `--c-accent`; un anillo del mismo color solo se veía por el
+`outline-offset`, que lo empujaba al blanco. Cumplía por accidente.
+
+**Área táctil mínima 24×24 px** (WCAG 2.5.8). Los enlaces de una línea
+necesitan `padding` vertical: sin él quedan en 18 px.
+
+**Tracking positivo en versalitas, y escala al revés que el cuerpo.**
+Las mayúsculas se dibujan con prosa lateral pensada para convivir con
+minúsculas; en caja alta hay que abrirlas. A más chico el cuerpo, más
+tracking: 0,015em en el nombre (30px), 0,03em en títulos de sección
+(22px), 0,08em en los títulos del PDF (9pt). Y con techo: los 0,15em
+que tenía el PDF separaban tanto que las palabras dejaban de leerse
+como unidades.
+
+**El título de sección no puede depender del tamaño solo.** Está a
+1,29× del cuerpo. Antes estaba a 1,18× y la jerarquía la sostenían la
+caja alta, el peso, el color y la línea inferior; si un segmento nuevo
+suelta una de esas señales, el tamaño tiene que aguantar solo.
+
+**El PDF y el sitio son la misma marca.** Misma tipografía (Source
+Sans 3), mismo lema, mismos nombres de sección, mismas viñetas. El PDF
+se descarga en el momento de mayor intención; entregar ahí un documento
+que parece de otra persona deshace lo que la landing acaba de construir.
+Para imprimir se usan instancias ESTÁTICAS de la fuente en
+`_fuente-pdf/ss3-{regular,bold}.ttf`: con la variable, Chrome la embebe
+como Type 3 y el archivo crece un 74%.
+
+**Margen inferior del PDF ≥ 8 mm, verificado tras cada regeneración.**
+`.page` tiene `overflow: hidden`, así que el contenido que sobra se
+recorta EN SILENCIO: no salta a una página 2 ni avisa. Y casi ninguna
+impresora de oficina imprime dentro de los ~5 mm del borde. Se mide
+renderizando el PDF a imagen y buscando la última fila con tinta — no
+se confía en el `padding` declarado, que el contenido puede desbordar.
+
 ---
 
 ## ESTADO DEL PROYECTO (bitácora — se actualiza al cerrar cada fase)
@@ -556,4 +619,22 @@ o esperar a que expire el caché.
   imagen dice quién, qué y dónde; el `og:title` y la `og:description`
   dicen el resto en texto del sistema, que WhatsApp siempre dibuja
   nítido y escalable.
+- **AUDITORÍA (tipografía · UX/UI · a11y) — APLICADA COMPLETA.** Las
+  reglas que dejó están en la sección "REGLAS DE ACCESIBILIDAD Y
+  TIPOGRAFÍA", más arriba. Resultado medido tras los arreglos:
+  4/4 listas con `role="list"`; teléfono y correo enlazados
+  conservando el texto visible; áreas táctiles de 32 px donde había 18;
+  etiquetas de contacto fuera del azul; anillo de foco que ya no
+  depende del `outline-offset`; salto título/cuerpo de 1,29× (era
+  1,18×); sin desbordes a 320 px ni con el espaciado de texto de la
+  1.4.12 forzado.
+  El PDF quedó unificado con el sitio y pasó de **82 KB a 33 KB**,
+  sigue etiquetado, con idioma y con texto buscable, y su margen
+  inferior pasó de **0,3 mm a 16,3 mm**.
+  Lo que la auditoría confirmó bien y no se tocó: contrastes de 5,69:1
+  a 17,37:1 (cuerpo en AAA), reflujo a 320 px, orden de encabezados sin
+  saltos, versalitas hechas con CSS y no escritas en mayúsculas,
+  viñetas dibujadas en CSS, cero imágenes en el cuerpo y por tanto cero
+  deuda de texto alternativo, y tamaño carta en el PDF (el correcto
+  para Chile, no A4).
 - **Fase 5 — pendiente.**

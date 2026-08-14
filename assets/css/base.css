@@ -41,7 +41,11 @@
   --fs-body:    1.0625rem;  /* 17px: cómodo en celular */
   --fs-nombre:  1.875rem;
   --fs-lema:    1.0625rem;
-  --fs-seccion: 1.25rem;
+  /* 22px, no 20px. A 20 el título de sección superaba al cuerpo solo en
+     un 18%, y la jerarquía la sostenían la caja alta, el peso, el color
+     y la línea inferior — no el tamaño. Bastaba que un segmento futuro
+     soltara una de esas cuatro señales para que se cayera. */
+  --fs-seccion: 1.375rem;
   --fs-small:   0.9375rem;
 
   /* Espacio — escala única para que todo respire igual */
@@ -111,10 +115,21 @@ strong { font-weight: 700; color: inherit; }
 
 a { color: var(--c-accent); }
 
-/* Foco visible para quien navega con teclado (requisito WCAG). */
+/* Foco visible para quien navega con teclado (requisito WCAG).
+
+   El anillo va en --c-deep, no en --c-accent: el botón primario ES
+   --c-accent, así que un anillo azul sobre él solo se veía gracias al
+   outline-offset, que lo empujaba fuera del botón hasta el blanco. Era
+   cumplir por accidente — bastaba que alguien pusiera offset:0 para que
+   el foco desapareciera justo en el botón más importante del sitio.
+   El box-shadow blanco dibuja un halo pegado al elemento, de modo que
+   el anillo oscuro siempre tiene blanco a ambos lados y contrasta
+   17,4:1, sea cual sea el fondo que tenga debajo. */
 a:focus-visible {
-  outline: 3px solid var(--c-accent);
-  outline-offset: 2px;
+  outline: 3px solid var(--c-deep);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--c-bg);
+  border-radius: 2px;
 }
 
 /* Contenedor de página: mobile-first (padding chico), se centra y se
@@ -145,7 +160,11 @@ a:focus-visible {
   font-weight: 700;
   color: var(--c-deep);
   line-height: 1.05;
-  letter-spacing: -0.005em;
+  /* Tracking POSITIVO en caja alta. Las mayúsculas se dibujan con prosa
+     lateral calibrada para convivir con minúsculas; al componer solo en
+     versalitas esa prosa queda corta y las letras se apiñan. Aquí había
+     tracking negativo, que es exactamente al revés. */
+  letter-spacing: 0.015em;
   text-transform: uppercase;
 }
 
@@ -171,6 +190,9 @@ section { margin-top: var(--sp-6); }
   font-weight: 700;
   color: var(--c-deep);
   text-transform: uppercase;
+  /* Más abierto que el nombre porque va más chico: el tracking en
+     versalitas escala al revés que el cuerpo. */
+  letter-spacing: 0.03em;
   line-height: 1.15;
   padding-bottom: var(--sp-1);
   border-bottom: 1px solid var(--c-deep);
@@ -250,17 +272,38 @@ section { margin-top: var(--sp-6); }
   margin-bottom: var(--sp-4);
 }
 
-/* Teléfono y correo van como texto plano a propósito: el visor de
-   enlaces de WhatsApp en Android no siempre los activa, así que se
-   muestran completos para copiar o marcar a mano. */
+/* Bloque de contacto: <dl> en rejilla de dos columnas, etiqueta a la
+   izquierda y dato a la derecha. El texto va completo y visible para
+   copiarlo o marcarlo a mano —esa siempre fue la intención—, pero
+   además es enlace, porque un <a href="tel:"> explícito funciona en
+   todos los visores; lo que WhatsApp no hace de forma confiable es
+   AUTODETECTAR texto plano, que es otra cosa. */
 .contacto {
   margin-top: var(--sp-4);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 var(--sp-3);
+  align-items: baseline;
   font-size: var(--fs-small);
   color: var(--c-ink-soft);
-  line-height: 1.75;
+  line-height: 1.6;
 }
-.contacto .etiqueta { color: var(--c-accent); font-weight: 700; }
-.contacto .dato     { color: var(--c-ink);    font-weight: 600; }
+
+/* La etiqueta ya NO va en azul. Usaba exactamente el color del único
+   enlace real de la página, en negrita, así que la gente tocaba
+   "WhatsApp" esperando que abriera algo y no pasaba nada: un fallo
+   silencioso, sin error visible. Ahora el azul significa una sola cosa
+   en toda la página, que es "esto se puede tocar". */
+.contacto .etiqueta { color: var(--c-ink-soft); font-weight: 700; }
+.contacto dd        { margin: 0; }
+
+/* padding vertical para llevar el área táctil sobre los 24 px que pide
+   la WCAG 2.5.8: el enlace de LinkedIn medía 18 px de alto. */
+.contacto a {
+  display: inline-block;
+  padding: var(--sp-1) 0;
+  font-weight: 600;
+}
 
 
 /* --- Marca de contenido pendiente: visible a propósito --- */
@@ -317,7 +360,7 @@ section { margin-top: var(--sp-6); }
   :root {
     --fs-nombre:  2.5rem;
     --fs-lema:    1.1875rem;
-    --fs-seccion: 1.375rem;
+    --fs-seccion: 1.5rem;
   }
   .wrap { padding: var(--sp-7) var(--sp-5); }
   .barra-marca { width: 3.5rem; height: 5px; }
