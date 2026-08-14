@@ -147,7 +147,7 @@ configura WhatsApp Business; se administra a mano.
 
   CIERRE
   Primera conversación sin costo.
-  WhatsApp +56 9 6778 9324 · fquevedoc@proton.me · LinkedIn
+  WhatsApp +56 9 6778 9324 · fernando@fernandoquevedo.cl · LinkedIn
 
 ## FASES
 
@@ -490,6 +490,32 @@ o esperar a que expire el caché.
   español, y el camel case lo haría leer como nombre propio (el nombre
   de la empresa es Adaptativamente). El término es una palanca de
   calibración por segmento, no una regla global.
+- **CORREO PROPIO — `fernando@fernandoquevedo.cl`.** Decisión de
+  Fernando tras rankear ~24 candidatos. Reemplaza a `fquevedoc@proton.me`
+  en los tres lugares donde vivía: la landing, la fuente del PDF (y por
+  tanto el PDF regenerado) y la copy canónica de este documento.
+  Razón: se dicta por teléfono sin deletrear una sola letra —la
+  audiencia es agro y municipal, el contacto ocurre en terreno—, y
+  coincide con el `<h1>` del sitio, con la línea grande de la tarjeta y
+  con la portada del CV: una sola identidad en todas partes. Sostiene
+  además el relato StoryBrand, donde el guía es una persona con nombre,
+  no un buzón. El costo aceptado es que no escala a un equipo; el día
+  que haga falta se agrega `contacto@` sin retirar esta.
+  Descartadas y por qué: `hola@` suena a agencia de Santiago ante una
+  audiencia rural; `contacto@` e `info@` son las direcciones más
+  cosechadas por bots y contradicen el relato personal; `quevedo@` y
+  `fquevedo@` obligan a deletrear (`q` y `v` son las dos letras que más
+  se confunden en español); `asesorias@` obliga a aclarar en cada
+  llamada que va sin tilde, y encasilla la oferta.
+  RECOMENDADO al configurar el buzón: alias `contacto@` e `info@` al
+  mismo destino, y catch-all para las variantes mal tipeadas — en rural
+  eso salva contactos reales. NO publicar alias por segmento
+  (`mariapinto@`, `clases@`): el correo es el canal secundario, el
+  principal es WhatsApp por diseño, y fragmentar la dirección publicada
+  costaría memorabilidad a cambio de un dato que el `wa.me` prellenado
+  ya entrega.
+  OJO — PENDIENTE: al momento de este cambio el dominio NO tenía
+  registros MX. La dirección no recibe hasta que se configure el buzón.
 - **CONVENCIÓN DE TÉRMINOS — MONEDA.** Decisión de Fernando: las cifras
   en pesos van SIN la sigla, `$790 millones`, nunca `$790 millones
   (CLP)`. Razón: el público es chileno, Fernando es chileno y el
