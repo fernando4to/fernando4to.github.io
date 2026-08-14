@@ -3,3 +3,13 @@
 
 # Permisos locales de Claude Code (específicos de esta máquina)
 .claude/settings.local.json
+
+# assets-entrada/ es el buzón donde Fernando deposita material crudo:
+# CV, borradores, imágenes de origen. Ese material suele traer datos
+# que NO pueden vivir en un repo público — el borrador del CV docente,
+# por ejemplo, trae su teléfono argentino y su correo antiguo.
+# Los archivos siguen en el disco y CLAUDE.md prohíbe modificarlos o
+# borrarlos; lo que se evita es publicarlos. Se versiona solo .gitkeep
+# para que la carpeta exista al clonar.
+assets-entrada/*
+!assets-entrada/.gitkeep

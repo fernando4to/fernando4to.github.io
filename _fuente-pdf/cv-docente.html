@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Fernando Quevedo - CV Docente</title>
+<!--
+  FUENTE DE IMPRESIÓN del CV docente que se descarga en /clases/.
+
+  Reescrito desde cero en agosto de 2026 sobre el borrador que Fernando
+  dejó en assets-entrada/. Ese borrador apuntaba a Finanzas Corporativas
+  y decía, textual, "en segundo término, Emprendimiento" — exactamente
+  al revés de lo que este segmento necesita. Además lo situaba en Buenos
+  Aires, con teléfono +54 y correo de Proton, y no incluía Terco.
+
+  DECISIÓN DE ORDEN: la experiencia emprendedora va ANTES que la
+  docente. Un director de escuela que busca profesor de emprendimiento
+  no compra horas de aula: compra a alguien que hizo lo que va a
+  enseñar. La docencia de Fernando es real pero antigua (2008) y la
+  mentoría reciente es de una sola emprendedora; ponerla primero abre
+  el documento por su punto más débil. La evidencia emprendedora es de
+  2026 y está documentada.
+
+  PRIVACIDAD — LEER ANTES DE EDITAR. Este repo es PÚBLICO. Las fuentes
+  de la sección de emprendimiento son dos repos PRIVADOS de Fernando
+  (`~/venture-mudanza` y `~/liquidacion-cardales`) que contienen o
+  contendrán nombres de personas reales, notas de entrevistas y su
+  número telefónico argentino. Aquí solo entran cifras agregadas y
+  método. NO agregar: nombres de entrevistados o familiares, URLs del
+  sitio de la liquidación (dado de baja a propósito), ni el teléfono
+  +54. El sitio de Cardales se pasó a privado y sus URLs están muertas.
+
+  DATOS EN CONFLICTO, pendientes de que Fernando resuelva:
+    - Inicio de Adaptativamente: el borrador docente decía Sep 2014; el
+      sitio, el CV de asesorías y la tarjeta dicen 2016. Aquí se usa
+      2016 por consistencia con lo YA PUBLICADO.
+    - Máximo anual de ventas: el borrador decía USD 280K en 2022; el CV
+      de asesorías dice $309 millones en 2021 (que son ~USD 386K). No
+      calzan ni el monto ni el año, así que el dato se OMITE en vez de
+      elegir un bando. El acumulado sí calza (USD 1M ≈ $790 millones).
+
+  Cómo se regenera (un solo comando, desde la raíz del repo):
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless --disable-gpu --no-pdf-header-footer \
+      --print-to-pdf="assets/docs/Fernando Quevedo - Docencia.pdf" \
+      "_fuente-pdf/cv-docente.html"
+
+  Tras regenerar, VERIFICAR EL MARGEN INFERIOR (mínimo 8 mm). `.page`
+  tiene overflow:hidden: lo que sobra se recorta EN SILENCIO.
+-->
+<style>
+  /* Mismas instancias estáticas que el CV de asesorías: con la fuente
+     variable, Chrome embebe Type 3 y el archivo crece ~74%. */
+  @font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 400;
+    src: url("ss3-regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 700;
+    src: url("ss3-bold.ttf") format("truetype");
+  }
+
+  @page { size: letter; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #FFFFFF; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .page {
+    box-sizing: border-box;
+    width: 8.5in;
+    height: 11in;
+    overflow: hidden;
+    padding: 11mm 18mm 9mm;
+    font-family: "Source Sans 3", Helvetica, Arial, sans-serif;
+    color: #1A1D21;
+    font-size: 9.5pt;
+    line-height: 1.25;
+    background: #FFFFFF;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  h1 { margin: 0; }
+  p  { margin: 0; }
+
+  .barra { width: 34px; height: 3px; background: #2251FF; margin-bottom: 2.2mm; }
+
+  .nombre {
+    font-size: 22pt; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; color: #051C2C; line-height: 1.1;
+  }
+  .titulo-cargo {
+    font-size: 10.5pt; font-weight: 700; color: #051C2C;
+    line-height: 1.25; margin-top: 1.6mm; max-width: 168mm;
+  }
+  .linea-contacto { font-size: 10pt; color: #1A1D21; margin-top: 1.4mm; }
+  .linea-contacto a { color: #1A1D21; white-space: nowrap; }
+
+  .seccion { margin-top: 2.3mm; }
+  .seccion--primera { margin-top: 2.6mm; }
+
+  .titulo-seccion {
+    font-size: 9pt; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: #051C2C;
+  }
+  .regla { border-top: 0.7pt solid #051C2C; margin: 1.0mm 0 1.4mm; }
+
+  .vinetas { display: grid; grid-template-columns: auto 1fr; column-gap: 2.4mm; row-gap: 1.0mm; }
+  .vineta { width: 1.5mm; height: 1.5mm; background: #2251FF; margin-top: 1.4mm; }
+
+  .fila-cargo {
+    display: flex; justify-content: space-between;
+    align-items: baseline; gap: 4mm;
+  }
+  .fila-cargo--siguiente { margin-top: 1.7mm; }
+  .fila-cargo strong { color: #1A1D21; }
+  .fechas { font-size: 9pt; color: #5A6470; white-space: nowrap; }
+  .parrafo-cargo { margin-top: 0.5mm; text-wrap: pretty; }
+
+  .pie { margin: 2.2mm 0 0; }
+  p, li { text-wrap: pretty; }
+</style>
+</head>
+
+<body>
+<section class="page">
+
+  <div class="barra"></div>
+  <h1 class="nombre">Fernando Quevedo</h1>
+  <div class="titulo-cargo">Emprendimiento e innovación · Finanzas para emprendedores · Economía</div>
+  <div class="linea-contacto">
+    María Pinto, Región Metropolitana ·
+    <a href="https://wa.me/56967789324">+56 9 6778 9324</a> ·
+    <a href="mailto:fernando@fernandoquevedo.cl">fernando@fernandoquevedo.cl</a> ·
+    <a href="https://www.linkedin.com/in/fernando-quevedo-callejas/">in/fernando-quevedo-callejas</a>
+  </div>
+
+  <div class="seccion seccion--primera">
+    <div class="titulo-seccion">Perfil docente</div>
+    <div class="regla"></div>
+    <p>Economista de la Universidad Católica, con investigación doctoral en decisiones bajo incertidumbre y once años construyendo empresas. Enseño emprendimiento desde la práctica documentada: fundé, escalé y cerré ordenadamente una empresa de tecnología educativa, y hoy corro el canvas de <strong>Disciplined Entrepreneurship</strong> (Aulet, MIT) sobre un emprendimiento propio, con fecha de go/no-go y evidencia registrada. Llevo al aula el costo real de cada decisión, cómo se distingue una prueba de ejecución de una prueba de negocio, y por qué la mayoría de los proyectos de curso mueren en las finanzas y no en la idea.</p>
+    <!-- Las áreas iban en su propia sección con título y línea: un bloque
+         entero, unos 11 mm, para una sola frase que además repetía el
+         subtítulo del encabezado. Aquí abajo cumplen la misma función. -->
+    <p style="margin-top:1.3mm"><strong>Áreas:</strong> Emprendimiento e Innovación · Finanzas para emprendedores y Finanzas Corporativas · Economía de Empresa y Mercado (competencia) · Microeconomía</p>
+  </div>
+
+  <div class="seccion">
+    <div class="titulo-seccion">Práctica emprendedora</div>
+    <div class="regla"></div>
+
+    <div class="fila-cargo">
+      <strong>Emprendimiento en curso — servicios de mudanza y liquidación de enseres</strong>
+      <span class="fechas">2026–presente</span>
+    </div>
+    <p class="parrafo-cargo">Aplico el <strong>Disciplined Entrepreneurship Canvas</strong> de Bill Aulet: 51 campos, 10 bloques, los 24 pasos y las 15 tácticas de Paul Cheek, con la lente de <strong>AIDE</strong> (AI-Driven Enterprise) sobre todo el diseño. Mercado objetivo: Santiago. Investigación primaria en curso con meta de <strong>≥60% de entrevistas fuera de la red cercana</strong>, por diseño explícito contra el sesgo de red tibia. Decisión de <strong>go/no-go fijada por calendario</strong>, no por convicción. Log de decisiones append-only.</p>
+
+    <div class="fila-cargo fila-cargo--siguiente">
+      <strong>Liquidación de enseres por mudanza internacional — prototipo en producción</strong>
+      <span class="fechas">2026</span>
+    </div>
+    <p class="parrafo-cargo"><strong>118 ítems publicados, 107 vendidos (90,7%) en 24 días</strong> contra una fecha límite dura. Catálogo propio, tasación con comparables reales de mercado, calendario de rebajas calculado hacia atrás desde el plazo, y canal de difusión directo. Cuenta como <strong>prueba de ejecución, no de negocio</strong>: la distinción es deliberada y es material de clase.</p>
+
+    <div class="fila-cargo fila-cargo--siguiente">
+      <strong>Adaptativamente — Fundador y Gerente General</strong>
+      <span class="fechas">2016–2023</span>
+    </div>
+    <p class="parrafo-cargo">Plataforma de aprendizaje adaptativo para colegios. Más de <strong>12.000 alumnos</strong> en 20 comunas y <strong>$790 millones</strong> en ventas acumuladas; equipo de hasta <strong>37 personas</strong>. Piloto nacional gratuito con el Ministerio de Educación: de 50 a cerca de 200 colegios y 450.000 ejercicios en 6 meses. Licitaciones públicas adjudicadas; pilotos en Perú y Colombia. Continuidad operativa en pandemia reduciendo costos ~20% sin desvincular a nadie, y <strong>cierre ordenado con el 100% de finiquitos e indemnizaciones pagados</strong>.</p>
+
+    <div class="fila-cargo fila-cargo--siguiente">
+      <strong>Terco SpA — Director y accionista</strong>
+      <span class="fechas">2026–presente</span>
+    </div>
+    <p class="parrafo-cargo">Constructora de pinturas y terminaciones, 170 trabajadores. Diseñé el plan de expansión hacia vivienda con subsidio del Estado (DS19 y DS49).</p>
+  </div>
+
+  <div class="seccion">
+    <div class="titulo-seccion">Docencia y mentoría</div>
+    <div class="regla"></div>
+    <div class="vinetas">
+      <span class="vineta"></span><p><strong>NAVES, IAE Business School</strong> (Argentina, oct–dic 2024) — mentoría uno a uno a una emprendedora: Business Model Canvas y flujo de caja proyectado por actividades (operación, inversión y financiamiento).</p>
+      <span class="vineta"></span><p><strong>Profesor, Introducción a la Economía</strong>, Universidad Adolfo Ibáñez (2008) — <strong>4 secciones de 50 estudiantes</strong>.</p>
+      <span class="vineta"></span><p><strong>Ayudante, Ingeniería Comercial</strong>, Pontificia Universidad Católica (2002–2007) — Competencia y Mercado (profesores Juan Pablo Montero y Fernando Coloma); Microeconomía II (Fernando Coloma, Gert Wagner); Microeconomía I (Gonzalo Edwards).</p>
+    </div>
+  </div>
+
+  <div class="seccion">
+    <div class="titulo-seccion">Formación</div>
+    <div class="regla"></div>
+    <div class="vinetas">
+      <span class="vineta"></span><p><strong>MBA Ejecutivo</strong>, IAE Business School – Universidad Austral, Argentina (2024–2025). Capstone <em>Vitalis</em> liderado como CEO, con 20 entrevistas de investigación de mercado: <strong>9,8 en Entrepreneurial Management</strong> y <strong>9,1 en Finanzas Corporativas</strong>.</p>
+      <span class="vineta"></span><p><strong>Certificado en Estrategia de IA</strong> — AI Strategies for Business Transformation, Kellogg School of Management (2025).</p>
+      <span class="vineta"></span><p><strong>Research Master in Economics</strong>, Tilburg University, Países Bajos (2009–2011).</p>
+      <span class="vineta"></span><p><strong>Magíster en Economía, mención Políticas Públicas</strong> (2005–2006) e <strong>Ingeniería Comercial, mención Economía</strong> (1999–2004), Pontificia Universidad Católica de Chile.</p>
+    </div>
+  </div>
+
+  <div class="seccion">
+    <div class="titulo-seccion">Investigación</div>
+    <div class="regla"></div>
+    <div class="vinetas">
+      <span class="vineta"></span><p><strong>Investigación doctoral en Economía</strong> (sin grado), Universidad de Viena, Austria (2011–2014). Diseño y ejecución de <strong>experimentos controlados</strong> —100 participantes, ~8.500 observaciones— con métodos econométricos y teoría de juegos, sobre <strong>decisiones bajo incertidumbre</strong>.</p>
+      <span class="vineta"></span><p><strong>Investigador</strong>, Institutos de Economía y de Sociología, Pontificia Universidad Católica (2007–2009): economía de la educación y uso de drogas.</p>
+    </div>
+  </div>
+
+  <p class="pie">Español nativo · Inglés fluido · Python (MITx, 2018) · Disponible en Santiago y Región Metropolitana</p>
+
+</section>
+</body>
+</html>

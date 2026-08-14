@@ -138,8 +138,8 @@ configura WhatsApp Business; se administra a mano.
   FORMACIÓN
   • Magíster en Economía (Políticas Públicas) e Ingeniería Comercial,
     U. Católica de Chile.
-  • Posgrados en Economía en Europa: Máster de investigación, U. de
-    Tilburg (Países Bajos); investigación doctoral, U. de Viena
+  • Posgrados en Economía en Europa: Máster de investigación, Tilburg
+    University (Países Bajos); investigación doctoral, U. de Viena
     (Austria).
   • MBA Ejecutivo, IAE Business School (Argentina, 2025).
   • Certificado en Estrategia de IA, Kellogg School of Management
@@ -592,6 +592,15 @@ se confía en el `padding` declarado, que el contenido puede desbordar.
   renglones; para volver a uno habría que acortar contenido —por
   ejemplo mostrar `in/fernando-quevedo-callejas` como ya hace la
   landing— y eso no se hizo sin autorización.
+- **CONVENCIÓN DE TÉRMINOS — NOMBRES DE INSTITUCIONES.** Se usa el
+  nombre propio de la institución cuando NO tiene exónimo asentado en
+  español, y el exónimo cuando sí lo tiene. Por eso conviven en la misma
+  frase `Tilburg University` (se llama así incluso en neerlandés;
+  "Universidad de Tilburg" le inventa un nombre que no usa) y
+  `Universidad de Viena` (exónimo estándar, igual que Universidad de
+  Oxford; su nombre propio sería *Universität Wien*, no la versión
+  inglesa). Corrección de Fernando, agosto 2026, aplicada en los cuatro
+  lugares donde aparecía Tilburg.
 - **CONVENCIÓN DE TÉRMINOS — MONEDA.** Decisión de Fernando: las cifras
   en pesos van SIN la sigla, `$790 millones`, nunca `$790 millones
   (CLP)`. Razón: el público es chileno, Fernando es chileno y el
@@ -637,4 +646,32 @@ se confía en el `padding` declarado, que el contenido puede desbordar.
   viñetas dibujadas en CSS, cero imágenes en el cuerpo y por tanto cero
   deuda de texto alternativo, y tamaño carta en el PDF (el correcto
   para Chile, no A4).
+- **SEGMENTO `/clases/` — CONSTRUIDO, SIN PUBLICAR.** Docencia
+  universitaria, dirigido a la UANDES (ramo Emprendimiento e Innovación,
+  9º de Ingeniería Comercial). CTA por WhatsApp, igual que el resto;
+  texto prellenado "(Docencia)". CSS sin tocar una línea — el criterio
+  de aceptación 6 se sostiene.
+  Copy redactada por Claude sobre material verificable y pendiente del
+  visto bueno de Fernando. Fuentes: el borrador de CV docente que dejó
+  en `assets-entrada/`, más sus proyectos `~/venture-mudanza` y
+  `~/liquidacion-cardales`.
+  PRIVACIDAD — ESOS DOS REPOS SON PRIVADOS y contienen nombres de
+  personas reales, notas de entrevistas y su teléfono argentino. A los
+  assets públicos solo entran cifras agregadas y método. NO agregar
+  nunca: nombres de entrevistados o familiares, el teléfono +54, ni URLs
+  del sitio de la liquidación (dado de baja a propósito).
+  Se creó además `_fuente-pdf/cv-docente.html` y su PDF (1 página,
+  44 KB, margen inferior 8,4 mm). Decisión de orden: la práctica
+  emprendedora va ANTES que la docente, porque la docencia es de 2008 y
+  la mentoría reciente fue de UNA emprendedora; abrir por ahí es abrir
+  por el punto más débil. Evaluaciones docentes: **no existen**, y el
+  copy no las insinúa.
+  DATO AÚN EN CONFLICTO: el máximo anual de ventas de Adaptativamente.
+  El borrador docente decía USD 280K en 2022; el CV de asesorías dice
+  $309 millones en 2021 (~USD 386K). No calzan ni monto ni año, así que
+  el dato se OMITE en todos los assets hasta que Fernando lo resuelva.
+  El acumulado sí calza y se usa: USD 1M ≈ $790 millones. El inicio de
+  la empresa quedó resuelto: **2016**.
+  PENDIENTE ANTES DE PUBLICAR: visto bueno de la copy, y calentar el CDN
+  de `og-clases.jpg` antes de compartir el link por WhatsApp.
 - **Fase 5 — pendiente.**
