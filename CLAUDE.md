@@ -514,8 +514,21 @@ o esperar a que expire el caché.
   principal es WhatsApp por diseño, y fragmentar la dirección publicada
   costaría memorabilidad a cambio de un dato que el `wa.me` prellenado
   ya entrega.
-  OJO — PENDIENTE: al momento de este cambio el dominio NO tenía
-  registros MX. La dirección no recibe hasta que se configure el buzón.
+  RECEPCIÓN RESUELTA con Cloudflare Email Routing: MX de
+  `route1/2/3.mx.cloudflare.net`, SPF y DMARC (`p=none`) publicados, y
+  el destino es la cuenta de Gmail de Fernando. Falta el ENVÍO: hoy las
+  respuestas siguen saliendo desde otra dirección, porque el reenvío de
+  Cloudflare no incluye SMTP de salida.
+  EFECTO DE BORDE EN EL PDF, ya corregido: la dirección nueva es 8
+  caracteres más larga que la anterior y la línea de contacto del CV
+  dejó de caber en un renglón. Chrome la cortó por el primer guion
+  disponible y partió la URL de LinkedIn en "…fernando-quevedo-" /
+  "callejas". Se arregló con `white-space: nowrap` en
+  `.linea-contacto a`: cada dato es indivisible, así que si algo no cabe
+  baja entero y el quiebre cae en un separador "·". La línea ocupa dos
+  renglones; para volver a uno habría que acortar contenido —por
+  ejemplo mostrar `in/fernando-quevedo-callejas` como ya hace la
+  landing— y eso no se hizo sin autorización.
 - **CONVENCIÓN DE TÉRMINOS — MONEDA.** Decisión de Fernando: las cifras
   en pesos van SIN la sigla, `$790 millones`, nunca `$790 millones
   (CLP)`. Razón: el público es chileno, Fernando es chileno y el

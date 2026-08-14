@@ -79,7 +79,12 @@
     color: #5A6470;
     margin-top: 1.2mm;
   }
-  .linea-contacto a { color: #5A6470; }
+  /* Cada dato es indivisible. Sin esto, cuando la línea no cabe, el
+     navegador la corta por el primer guion que encuentra y parte la URL
+     de LinkedIn en "…fernando-quevedo-" / "callejas", dejando una
+     palabra huérfana en la segunda línea. Con nowrap, si algo no cabe
+     baja entero y el quiebre ocurre en un separador "·". */
+  .linea-contacto a { color: #5A6470; white-space: nowrap; }
 
   .seccion { margin-top: 3.2mm; }
   .seccion--primera { margin-top: 3.4mm; }
