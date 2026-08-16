@@ -118,8 +118,8 @@ configura WhatsApp Business; se administra a mano.
 
   RESULTADOS
   • $790 millones en ventas acumuladas — empresa de tecnología
-    educativa que fundé y dirigí durante 7 años, con un equipo de
-    37 personas (2016–2023).
+    educativa que fundé y dirigí durante diez años, con un equipo de
+    37 personas (2014–2024).
   • De 50 a 200 colegios en 6 meses — piloto nacional con el
     Ministerio de Educación; 450.000 ejercicios entregados (2019).
   • Cierre ordenado tras la crisis social y la pandemia — 100% de
@@ -129,9 +129,9 @@ configura WhatsApp Business; se administra a mano.
   • 2026–hoy · Director y accionista, Terco SpA — constructora de
     pinturas y terminaciones, 170 trabajadores; diseñé su expansión a
     vivienda con subsidio (DS 19 / DS 49).
-  • 2024–2025 · Mentor del programa NAVES, IAE Business School
+  • 2024 · Mentor del programa NAVES, IAE Business School
     (Argentina).
-  • 2016–2023 · Fundador y Gerente General, Adaptativamente
+  • 2014–2024 · Fundador y Gerente General, Adaptativamente
     (tecnología educativa para colegios).
   • Antes · Docencia en economía: U. Adolfo Ibáñez y PUC.
 
@@ -592,6 +592,24 @@ se confía en el `padding` declarado, que el contenido puede desbordar.
   renglones; para volver a uno habría que acortar contenido —por
   ejemplo mostrar `in/fernando-quevedo-callejas` como ya hace la
   landing— y eso no se hizo sin autorización.
+- **CANON DE CIFRAS — LA FUENTE ES LINKEDIN.** Decisión de Fernando,
+  agosto 2026: ante discrepancias entre documentos, manda su perfil de
+  LinkedIn. Canon vigente: NAVES **2024** · Adaptativamente
+  **2014–2024**, redactado como "durante diez años" · **$790 millones**
+  acumulados · **de 50 a 200 colegios en 6 meses** · equipo de
+  **37 personas**.
+  Esto REVIERTE el "Adaptativamente partió en 2016" que Fernando había
+  confirmado días antes; LinkedIn dice 2014 y ahora LinkedIn manda.
+  Aplicado en las dos landings, en los dos PDF y en la copy canónica de
+  este documento, en un solo commit, para que no vuelva a haber un
+  documento diciendo una cosa y otro diciendo otra.
+  SIGUE SIN RESOLVER el máximo anual de ventas: `cv-asesorias` dice
+  "$309 millones, 2021" y el borrador docente decía USD 280K en 2022.
+  LinkedIn no lo publica, así que no hay árbitro y el dato se dejó como
+  estaba en asesorías y omitido en docencia.
+  PENDIENTE: `/clases/` no incluye "de 50 a 200 colegios en 6 meses" —
+  sus tres Resultados son otros. No se agregó porque sería copy nueva,
+  no alineación.
 - **CONVENCIÓN DE TÉRMINOS — NOMBRES DE INSTITUCIONES.** Se usa el
   nombre propio de la institución cuando NO tiene exónimo asentado en
   español, y el exónimo cuando sí lo tiene. Por eso conviven en la misma
