@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>og:image 1200×630 — Docencia</title>
+<!--
+  FUENTE DE IMAGEN de la vista previa que muestra WhatsApp al compartir
+  el link de la RAÍZ (/).
+  La spec que manda sobre este archivo vive en CLAUDE.md, bajo el título
+  "SPEC CANÓNICA TARJETA v4". Si cambia, se reemplaza entera, no se parcha.
+
+  TRES NIVELES DE TEXTO
+  L1 nombre · L2 qué hago · L3 dónde. La imagen dice quién, qué y dónde;
+  el og:title y la og:description dicen el resto en texto del sistema,
+  que WhatsApp siempre dibuja nítido y escalable.
+
+  GEOMETRÍA — medida, no estimada
+  Lienzo 1200×630. Márgenes mínimos: 80 px laterales, 63 px verticales,
+  o sea 1040×504 px útiles. Source Sans 3 tiene altura de mayúscula
+  0,6518 × font-size en bold y 0,6563 en regular.
+
+  CORTE DE CONTENIDO EN L2. El texto natural era "Emprendimiento e
+  innovación", que es el nombre del ramo. Medido, tope a 54,2 px de
+  altura de mayúscula en los 1040 px disponibles: por debajo del piso
+  de 60 de la spec. Se aplicó la regla 1 de resolución de conflictos
+  —primero se corta contenido— y quedó "Emprendimiento", que a cap 60
+  mide 647 px. "innovación" sobrevive en el <h1> y el lema de la
+  página, donde no hay tope de ancho.
+
+  POR QUÉ L1 MIDE 81 px DE ALTURA DE MAYÚSCULA Y NO 92-100
+  "Fernando Quevedo" en caja mixta bold ocupa 8,346 em. A 92 px de
+  altura de mayúscula (font-size 141,2 px) mediría 1178 px de ancho:
+  138 px más que los 1040 disponibles. El máximo que cabe respetando
+  los márgenes es 81 px. Enmienda aprobada por Fernando: se conserva
+  el bold, la línea única y los márgenes, y se acepta que el ratio
+  L1/L2 quede en 1,350. Razón: la jerarquía la construye el peso tanto
+  como el tamaño, y con L1 y L2 en el mismo peso —única forma de subir
+  el ratio— el nombre se siente MENOS dominante, no más.
+
+  Cómo se regenera (desde la raíz del repo):
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+      --headless --disable-gpu --hide-scrollbars \
+      --allow-file-access-from-files --force-device-scale-factor=1 \
+      --window-size=1200,630 --virtual-time-budget=8000 \
+      --screenshot=/tmp/og.png "_fuente-img/og-mariapinto.html"
+  y luego a JPEG calidad 85, baseline (nunca progresivo: WhatsApp no
+  dibuja los JPEG progresivos):
+    python3 -c "from PIL import Image; \
+      Image.open('/tmp/og.png').convert('RGB').save(\
+      'assets/img/og-mariapinto.jpg','JPEG',quality=85,optimize=True,\
+      progressive=False)"
+  Tras publicar: pide la imagen dos veces desde el navegador para
+  calentar el CDN ANTES de probar la vista previa. Si WhatsApp raspa
+  el objeto frío y la descarga no alcanza a completarse, guarda el
+  fracaso para esa URL durante días.
+-->
+<style>
+  @font-face {
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 400 700;
+    src: url("../assets/fonts/source-sans-3-latin.woff2") format("woff2");
+  }
+
+  html, body { margin: 0; padding: 0; background: #051C2C; }
+
+  .og {
+    width: 1200px;
+    height: 630px;
+    box-sizing: border-box;
+    background: #051C2C;              /* --c-deep */
+    font-family: "Source Sans 3", system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 63px 80px;               /* márgenes mínimos de la spec */
+  }
+
+  .barra { width: 100px; height: 12px; background: #2251FF;  /* --c-accent */
+           margin-bottom: 34px; }
+
+  /* L1 · 124px × 0,6518 = 81 px de altura de mayúscula.
+     Caja mixta, bold, una sola línea. line-height en px porque el
+     interlineado por defecto abriría el bloque sin necesidad. */
+  .nombre { font-size: 124px; font-weight: 700; line-height: 124px;
+            color: #FFFFFF; margin-bottom: 30px; white-space: nowrap; }
+
+  /* L2 y L3 · 91px × 0,6563 = 60 px de altura de mayúscula.
+     Peso regular: es lo que deja al nombre mandar. L2 entra al ras
+     (954 de 1040 px); no le queda margen para crecer. */
+  .linea  { font-size: 91px; font-weight: 400; line-height: 91px;
+            color: #FFFFFF; white-space: nowrap; }
+  .linea + .linea { margin-top: 12px; }
+
+  /* L3 en gris: la jerarquía entre L2 y L3 se resuelve por TONO, no
+     por tamaño ni peso —los tres comparten cap y peso—. El gris solo
+     desenfatiza mientras el contraste medido siga ≥ 7:1.
+     #A8B6C2 mide 8,38:1 sobre #051C2C. No se usa ningún token de
+     base.css porque ninguno sirve: --c-ink-soft (#5A6470) está
+     calibrado contra fondo blanco y sobre este azul cae a 2,89:1, y
+     --c-line (#D5DAE0) es color de líneas divisorias, no de texto.
+     Este gris vive solo sobre fondo oscuro. */
+  .lugar  { color: #A8B6C2; }
+</style>
+</head>
+
+<body>
+<div class="og">
+  <div class="barra"></div>
+  <div class="nombre">Fernando Quevedo</div>
+  <div class="linea">Estrategia, finanzas e IA</div>
+  <div class="linea lugar">Economista (PUC)</div>
+</div>
+</body>
+</html>

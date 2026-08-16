@@ -350,6 +350,9 @@ section { margin-top: var(--sp-6); }
   text-align: center;
   font-size: var(--fs-small);
 }
+/* Mismo padding que en .contacto: sin él estos enlaces quedan en 18 px
+   de alto, bajo los 24 que exige la WCAG 2.5.8. */
+.linea-linkedin a { display: inline-block; padding: var(--sp-1) 0; }
 
 
 /* ------------------------------------------------------------
