@@ -1,0 +1,45 @@
+# Mantiene calientes las tarjetas de vista previa en el CDN de GitHub Pages.
+#
+# EL PROBLEMA
+# GitHub Pages sirve con `cache-control: max-age=600`, así que el borde del
+# CDN olvida un archivo a los 10 minutos sin tráfico. Una página que se
+# comparte de vez en cuando está fría SIEMPRE justo cuando se comparte. Si
+# WhatsApp raspa la imagen en ese momento y la descarga no alcanza a
+# completarse, guarda el fracaso para esa URL durante días — aunque el
+# archivo esté perfecto. Ya pasó dos veces: con /mariapinto/ y con /clases/.
+#
+# LO QUE HACE
+# Pide las tres tarjetas cada 5 minutos. Nada más. No hace checkout del
+# repo, no escribe nada, no necesita permisos.
+#
+# LÍMITE CONOCIDO, PARA QUE NADIE SE CONFÍE
+# GitHub no garantiza la puntualidad de los `schedule`: bajo carga los
+# retrasa, a veces 10 o 15 minutos. Con un TTL de 10 minutos eso significa
+# que habrá ventanas frías. Reduce el problema, no lo elimina. Antes de
+# compartir un link recién publicado, sigue conviniendo calentar a mano.
+#
+# ADEMÁS: GitHub desactiva los workflows programados en repos sin actividad
+# por 60 días. Si el sitio queda quieto mucho tiempo, hay que reactivarlo a
+# mano desde la pestaña Actions.
+
+name: Calentar CDN
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:        # permite dispararlo a mano desde la pestaña Actions
+
+permissions: {}
+
+jobs:
+  calentar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Pedir las tarjetas
+        run: |
+          for img in og-raiz og-mariapinto og-clases; do
+            url="https://www.fernandoquevedo.cl/assets/img/$img.jpg"
+            estado=$(curl -s -o /dev/null -w '%{http_code} %{time_total}s' --max-time 20 "$url" || echo "fallo")
+            echo "$img -> $estado"
+          done
